@@ -238,8 +238,10 @@ input{font:inherit;color:inherit}
 .bdg{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:12px;letter-spacing:-.4px;flex:none;box-shadow:0 0 0 1px rgba(0,0,0,.06)}
 .bdg.sm{width:22px;height:22px;font-size:8.5px}
 .bdg.xs{width:18px;height:18px;font-size:7.5px}
-.bdg.bk{background:#f5ebdc;color:#d62300}
-.bdg.lc{background:#f47b20;color:#fff}
+.bdg.dor{background:#141414;color:#ff8a00;font-size:15px}
+.bdg.dor.sm{font-size:11px}.bdg.dor.xs{font-size:9px}
+.bdg.bj{background:#cdeaf7;color:#173a6b;font-size:9.5px;letter-spacing:-.6px}
+.bdg.bj.sm{font-size:6.5px}.bdg.bj.xs{font-size:5.5px}
 .bdg.gm{background:#fff;color:#1d3f8f;font-size:15px;font-family:Georgia,serif;font-style:italic}
 .bdg.gm.sm{font-size:11px}.bdg.gm.xs{font-size:10px}
 
@@ -376,6 +378,20 @@ input{font:inherit;color:inherit}
 .rbtn{flex:1;height:52px;justify-content:space-between;padding:0 20px;font-size:16px}
 .rbtn.done{background:var(--kale)}
 
+.slogo{width:24px;height:24px;border-radius:50%;background:#fff;object-fit:contain;flex:none;box-shadow:0 0 0 1px rgba(0,0,0,.06)}
+.slogo.sm{width:20px;height:20px}
+.store-logo .slogo{width:26px;height:26px}
+.price.na{font-size:12.5px;font-weight:700;color:var(--ink-2);margin-top:9px}
+.addc.na{background:var(--line);color:var(--ink-2);box-shadow:none;pointer-events:none}
+.addc.na:empty{display:none}
+.pd-na{margin:14px 0 4px;padding:12px 14px;border-radius:14px;background:#fff6e5;color:#6b4d00;font-size:13.5px;line-height:1.45}
+.pd-na b{display:block;color:#3d2c00;margin-bottom:2px}
+.pan{padding:9px 0 9px 34px;border-bottom:1px solid var(--line-2);font-size:14px;color:#4a4d52;position:relative}
+.pan::before{content:"";position:absolute;left:8px;top:16px;width:6px;height:6px;border-radius:50%;background:#c8cbcf}
+.src{margin-top:20px;font-size:12.5px;color:var(--ink-2)}
+.ing .t b{font-weight:600}
+.svp .addc.na{display:none}
+
 /* bottom nav */
 .bnav{flex:none;display:flex;justify-content:space-around;align-items:flex-start;height:82px;padding-top:9px;border-top:1px solid var(--line);background:#fff}
 .bnav button{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:600;color:var(--ink-2);width:76px}
@@ -480,37 +496,34 @@ input{font:inherit;color:inherit}
 
 <script>
 /* ================= brands and Flick tags ================= */
-const BK_IMG = [
-  "https://storage.googleapis.com/bucket-fi-production-apps-0672ab2d/original/images/vgb12g0d1wqufkl7z4feanie.png",
-  "https://storage.googleapis.com/bucket-fi-production-apps-0672ab2d/original/images/rzgdg51stjs2pzpbya8vklbt.png",
-  "https://storage.googleapis.com/bucket-fi-production-apps-0672ab2d/original/images/f3pa4ruwwjuezgg0wern1rq3.png"
-];
+// Product photos, names, sizes and prices: Safeway on Instacart. Recipes: General Mills' own recipe sites.
+const IC = id => `https://www.instacart.com/image-server/394x394/filters:fill(FFFFFF,true):format(jpg)/d2lnr5mha7bycj.cloudfront.net/product-image/file/${id}`;
+const SAFEWAY_LOGO = "https://www.instacart.com/image-server/144x144/www.instacart.com/assets/domains/warehouse/logo/1/3b7ef435-1d5a-463e-ae62-e4fa2aaab32b.png";
+const RAZZ_IMG = "https://www.benjerry.com/files/live/sites/systemsite/files/US%20and%20Global%20Assets/Flavors/Product%20Assets/US/razz_up_ice_cream/45283_US_IC_RazzUp.png?imwidth=400";
+// Variant order follows each Flick's own option numbers (data-vertex-diff).
 const BRANDS = {
   gm: {
-    name:"General Mills", src:"https://native-ads-dev.appless.workers.dev/kbf8k6/ad.js", dsp:"dv360_studio",
-    store:"Greenleaf Market", unit:"flavor",
+    name:"General Mills", src:"https://native-ads-dev.appless.workers.dev/kbf8k6/ad.js", dsp:"dv360_studio", unit:"flavor", head:"Breakfast, three ways",
     variants:[
-      {n:"Lucky Charms Cereal", short:"Lucky Charms", s:"10.5 oz", p:5.49, img:"assets/gm-0.webp"},
-      {n:"Honey Nut Cheerios Cereal", short:"Honey Nut Cheerios", s:"10.8 oz", p:4.99, img:"assets/gm-1.webp"},
-      {n:"Cinnamon Toast Crunch Cereal", short:"Cinnamon Toast Crunch", s:"12 oz", p:5.29, img:"assets/gm-2.webp"}
+      {n:"General Mills Gluten Free Lucky Charms with Marshmallows Cereal", short:"Lucky Charms", s:"10.5 oz", p:7.59, was:8.19, img:IC("large_c71a6552-dfea-4251-a987-68e706029ea9.png")},
+      {n:"General Mills Honey Nut Cheerios Cereal", short:"Honey Nut Cheerios", s:"10.8 oz", p:7.59, was:8.19, img:IC("large_20c162a2-b468-4e70-9560-f06cda103943.png")},
+      {n:"General Mills Cinnamon Toast Crunch Cereal", short:"Cinnamon Toast Crunch", s:"12 oz", p:7.59, was:8.19, img:IC("large_6577df2d-269e-4f29-ba7d-f3168054b7db.png")}
     ]
   },
-  bk: {
-    name:"Burger King", src:"https://flicks.flamapp.live/dzvxyq/ad.js", dsp:"house",
-    store:"Burger King", eta:"20-30 min", fee:"$0.99 delivery", unit:"burger",
+  dor: {
+    name:"Doritos", src:"https://native-ads-dev.appless.workers.dev/6a96c6969e74536944c4167f_vqdcng/ad.js", dsp:"none", unit:"flavor", head:"Pick your crunch",
     variants:[
-      {n:"Double Rodeo Burger", short:"Rodeo Burger", s:"Restaurant item", p:7.49, img:BK_IMG[0]},
-      {n:"Pretzel Bacon King", short:"Pretzel Bacon King", s:"Restaurant item", p:9.29, img:BK_IMG[1]},
-      {n:"Double Whopper with Cheese", short:"Double Whopper", s:"Restaurant item", p:8.79, img:BK_IMG[2]}
+      {n:"Doritos Flavored Tortilla Chips, Cool Ranch", short:"Cool Ranch", s:"9.25 oz", p:5.99, img:IC("large_74f96a90-3a0c-455f-ada1-aae6b5bc8ef0.png")},
+      {n:"Doritos Flavored Tortilla Chips, Nacho Cheese", short:"Nacho Cheese", s:"9.25 oz", p:5.99, img:IC("large_0e547e89-6302-431a-8619-ac30c4dab0da.png")},
+      {n:"Doritos Flavored Tortilla Chips, Spicy Sweet Chili", short:"Spicy Sweet Chili", s:"9.25 oz", p:5.99, img:IC("large_790e43bb-85af-451a-9339-6791be9f31ee.png")}
     ]
   },
-  lc: {
-    name:"Little Caesars", src:"https://native-ads-dev.appless.workers.dev/xlgqpx/ad.js", dsp:"dv360_studio",
-    store:"Little Caesars", eta:"25-35 min", fee:"$0.99 delivery", unit:"pizza",
+  bj: {
+    name:"Ben & Jerry's", src:"https://native-ads-dev.appless.workers.dev/6a96c6969e74536944c4167f_z1fp1a/ad.js", dsp:"none", unit:"flavor", head:"Which pint tonight?",
     variants:[
-      {n:"Classic Pepperoni Pizza", short:"Pepperoni", s:"Large, 8 slices", p:8.49, img:"assets/lc-0.webp"},
-      {n:"Classic Cheese Pizza", short:"Cheese", s:"Large, 8 slices", p:7.49, img:"assets/lc-1.webp"},
-      {n:"Veggie Pizza", short:"Veggie", s:"Large, 8 slices", p:11.99, img:"assets/lc-2.webp"}
+      {n:"Ben & Jerry's Cherry Garcia® Ice Cream Pint", short:"Cherry Garcia", s:"1 pt", p:6.99, was:8.99, img:IC("large_c272f189-7d9c-4c5d-ab83-48e12b1874dd.png")},
+      {n:"Ben & Jerry's Razz Up! Ice Cream Pint", short:"Razz Up!", s:"1 pt", p:null, na:true, img:RAZZ_IMG},
+      {n:"Ben & Jerry's Chunky Monkey® Banana Ice Cream Pint", short:"Chunky Monkey", s:"473 ml", p:6.99, was:8.99, img:IC("large_1fca5e9d-fd60-48c2-a733-71a021963dc9.png")}
     ]
   }
 };
@@ -530,7 +543,7 @@ v.addEventListener("vertex-cta",function(e){var d=e.detail||{};t({type:"cta",url
 v.addEventListener("vertex-diff-change",function(e){var d=e.detail||{};t({type:"switch",diff:+d.diff||0,initial:!!d.initial})});}
 new MutationObserver(function(){var v=document.querySelector("vertex-player");if(v)hook(v)}).observe(document.documentElement,{childList:true,subtree:true});
 window.addEventListener("error",function(e){var s=e.target;if(s&&s.tagName==="SCRIPT")t({type:"error",msg:"Could not load "+s.src})},true);})();`;
-  const cfg = b.dsp === "house"
+  const cfg = b.dsp === "none" ? "" : b.dsp === "house"
     ? `<script>window.AD_CONFIG=window.AD_CONFIG||{};window.AD_CONFIG.dsp="house";window.AD_CONFIG.clickTracker={"mode":"exit","template":""};<\/script>`
     : `<script>window.AD_CONFIG=window.AD_CONFIG||{};window.AD_CONFIG.dsp="dv360_studio";window.AD_CONFIG.publisherInfo={"publisher_id":"\${PUBLISHER_ID}","adsxt_publisher_id":"\${ADSXT_PUBLISHER_ID}","universal_site_id":"\${UNIVERSAL_SITE_ID}","source_url":"\${SOURCE_URL}","source_url_enc":"\${SOURCE_URL_ENC}","adsxt_ad_system_domain":"\${ADSXT_AD_SYSTEM_DOMAIN}"};window.AD_CONFIG.clickTracker={"mode":"exit","template":""};<\/script>`;
   return `<!doctype html>
@@ -543,97 +556,115 @@ ${cfg}
 <script src=${b.src}><\/script>`;
 }
 
-/* ================= product art (store items) ================= */
-function art(kind, c1, c2, label=""){
-  const sh = `<ellipse cx="50" cy="92" rx="28" ry="3.2" fill="#000" opacity=".08"/>`;
-  const tx = (y, col, size=7.2) => label ? `<text x="50" y="${y}" text-anchor="middle" font-family="-apple-system,Segoe UI,Arial" font-weight="800" font-size="${size}" fill="${col}">${label}</text>` : "";
-  const K = {
-    box:`${sh}<rect x="28" y="12" width="44" height="78" rx="3" fill="${c1}"/><rect x="28" y="12" width="44" height="20" rx="3" fill="${c2}"/><rect x="65" y="12" width="7" height="78" fill="#000" opacity=".07"/>${tx(25,"#fff")}<ellipse cx="50" cy="66" rx="16" ry="10" fill="#fff" opacity=".92"/><ellipse cx="50" cy="62" rx="13" ry="5" fill="${c2}" opacity=".55"/>`,
-    carton:`${sh}<path d="M31 30L50 12l19 18v60H31z" fill="${c1}"/><path d="M31 30L50 12l19 18z" fill="#fff" opacity=".85"/><rect x="31" y="48" width="38" height="20" fill="${c2}"/>${tx(61,"#fff",6.6)}<rect x="63" y="30" width="6" height="60" fill="#000" opacity=".07"/>`,
-    jug:`${sh}<rect x="44" y="9" width="12" height="7" rx="2" fill="${c1}"/><path d="M40 16h20l6 12v54a8 8 0 01-8 8H42a8 8 0 01-8-8V28z" fill="#fff" stroke="#e1e3e6" stroke-width="1.5"/><rect x="34" y="46" width="32" height="22" fill="${c1}"/>${tx(60,"#fff",6.6)}`,
-    bottle:`${sh}<rect x="44" y="8" width="12" height="16" rx="3" fill="${c2}"/><rect x="34" y="22" width="32" height="68" rx="10" fill="${c1}"/><rect x="34" y="46" width="32" height="24" fill="#fff" opacity=".92"/>${tx(61,c1,6.4)}`,
-    bag:`${sh}<path d="M27 18h46l4 70H23z" fill="${c1}"/><rect x="26" y="14" width="48" height="7" rx="2" fill="${c2}"/><ellipse cx="50" cy="58" rx="15" ry="12" fill="#fff" opacity=".85"/>${tx(38,"#fff",6.8)}`,
-    tray:`${sh}<rect x="14" y="36" width="72" height="44" rx="8" fill="#fff" stroke="#e1e3e6" stroke-width="1.5"/><circle cx="34" cy="58" r="13" fill="${c1}"/><circle cx="62" cy="58" r="13" fill="${c1}"/><circle cx="34" cy="56" r="10" fill="${c2}" opacity=".35"/><circle cx="62" cy="56" r="10" fill="${c2}" opacity=".35"/><rect x="58" y="70" width="24" height="9" rx="2" fill="${c2}"/>`,
-    pizzabox:`${sh}<rect x="14" y="20" width="72" height="68" rx="5" fill="${c1}"/><rect x="14" y="20" width="72" height="16" rx="5" fill="${c2}"/>${tx(31,"#fff",7)}<circle cx="50" cy="62" r="20" fill="#f2c26b"/><circle cx="50" cy="62" r="16" fill="#e8563a" opacity=".8"/><circle cx="44" cy="57" r="3" fill="#fff4d6"/><circle cx="55" cy="66" r="3" fill="#fff4d6"/><circle cx="54" cy="55" r="2.5" fill="#7a9a3a"/>`,
-    cup:`${sh}<ellipse cx="50" cy="32" rx="22" ry="5" fill="${c1}"/><path d="M28 32h44l-5 56H33z" fill="#fff" stroke="#e1e3e6" stroke-width="1.5"/><rect x="30" y="48" width="40" height="18" fill="${c2}"/>${tx(60,"#fff",6.4)}`,
-    jar:`${sh}<rect x="36" y="16" width="28" height="10" rx="3" fill="${c2}"/><rect x="31" y="24" width="38" height="66" rx="10" fill="${c1}"/><rect x="31" y="46" width="38" height="22" fill="#fff" opacity=".9"/>${tx(60,c2,6.4)}`,
-    tub:`${sh}<rect x="22" y="40" width="56" height="44" rx="6" fill="${c1}"/><rect x="20" y="34" width="60" height="10" rx="4" fill="${c2}"/>${tx(66,"#7a5a00",7)}`,
-    berries:`${sh}<rect x="22" y="48" width="56" height="38" rx="6" fill="#fff" stroke="#e1e3e6" stroke-width="1.5"/><circle cx="36" cy="46" r="8" fill="${c1}"/><circle cx="50" cy="42" r="8" fill="${c2}"/><circle cx="64" cy="46" r="8" fill="${c1}"/><circle cx="43" cy="36" r="6" fill="#3d3a8a"/><circle cx="58" cy="35" r="6" fill="#3d3a8a"/><rect x="30" y="62" width="40" height="12" rx="2" fill="${c2}" opacity=".85"/>`,
-    eggs:`${sh}<rect x="14" y="46" width="72" height="34" rx="6" fill="${c1}"/><ellipse cx="30" cy="46" rx="9" ry="11" fill="#fff8ee"/><ellipse cx="50" cy="44" rx="9" ry="11" fill="#fff8ee"/><ellipse cx="70" cy="46" rx="9" ry="11" fill="#fff8ee"/><rect x="30" y="60" width="40" height="12" rx="2" fill="${c2}"/>`,
-    loaf:`${sh}<path d="M18 52c0-14 14-22 32-22s32 8 32 22c0 4-3 6-6 6v26H24V58c-3 0-6-2-6-6z" fill="${c1}"/><path d="M28 42c6-4 14-6 22-6" stroke="${c2}" stroke-width="3" stroke-linecap="round" fill="none" opacity=".6"/><rect x="34" y="62" width="32" height="12" rx="2" fill="#fff" opacity=".9"/>`,
-    buns:`${sh}<path d="M20 22h60l4 66H16z" fill="#fff" stroke="#e1e3e6" stroke-width="1.5"/><ellipse cx="38" cy="54" rx="15" ry="11" fill="${c1}"/><ellipse cx="62" cy="54" rx="15" ry="11" fill="${c1}"/><ellipse cx="50" cy="70" rx="15" ry="11" fill="${c1}"/><circle cx="36" cy="50" r="1.2" fill="#fff"/><circle cx="64" cy="51" r="1.2" fill="#fff"/><rect x="30" y="26" width="40" height="10" rx="2" fill="${c2}"/>`,
-    slices:`${sh}<rect x="22" y="22" width="56" height="64" rx="6" fill="#fff" stroke="#e1e3e6" stroke-width="1.5"/><rect x="28" y="30" width="44" height="44" rx="2" fill="${c1}"/><rect x="32" y="34" width="44" height="44" rx="2" fill="${c1}" opacity=".7"/><rect x="28" y="78" width="44" height="5" rx="2" fill="${c2}"/>`
-  };
-  return `<svg viewBox="0 0 100 100" aria-hidden="true">${K[kind]||K.box}</svg>`;
-}
-
-/* ================= catalog ================= */
+/* ================= catalog (Safeway on Instacart) ================= */
 const P = {};
-function prod(id, o){ P[id] = Object.assign({id, store:"Greenleaf Market"}, o); return id; }
-Object.entries(BRANDS).forEach(([k,b]) => b.variants.forEach((v,i) => prod(`${k}-${i}`, {n:v.n, s:v.s, p:v.p, img:v.img, store:b.store, brand:k, vi:i})));
-// store items (illustrative)
-prod("oat-rings",   {n:"Toasted Oat Rings Cereal", s:"12 oz", p:3.29, art:["box","#c9a46a","#7a4e1d","OAT RINGS"]});
-prod("granola",     {n:"Honey Almond Granola", s:"16 oz", p:4.79, was:5.99, art:["bag","#c98b3c","#8a5a1c","GRANOLA"]});
-prod("corn-flakes", {n:"Frosted Corn Flakes", s:"13.5 oz", p:3.99, art:["box","#2a6fd6","#f2a516","FLAKES"]});
-prod("bran",        {n:"Raisin Bran Crunch", s:"18 oz", p:4.49, art:["box","#6a3fa0","#3c215f","RAISIN"]});
-prod("oats",        {n:"Old Fashioned Rolled Oats", s:"42 oz", p:5.49, art:["bag","#b78a4a","#7a5626","OATS"]});
-prod("choc-puffs",  {n:"Chocolate Puffs Cereal", s:"11.8 oz", p:3.89, art:["box","#6b3b22","#e9b04a","COCOA"]});
-prod("milk-2",      {n:"2% Reduced Fat Milk", s:"1 gal", p:4.29, art:["jug","#2a7de1","","2% MILK"]});
-prod("milk-whole",  {n:"Whole Milk", s:"1 gal", p:4.49, art:["jug","#d63a2f","","WHOLE"]});
-prod("milk-oat",    {n:"Original Oat Milk", s:"64 fl oz", p:4.99, art:["carton","#e9dcc6","#1f4d8f","OAT MILK"]});
-prod("milk-almond", {n:"Unsweetened Almond Milk", s:"64 fl oz", p:3.79, was:4.29, art:["carton","#f1e7d9","#4a8a3c","ALMOND"]});
-prod("milk-lf",     {n:"Lactose Free 2% Milk", s:"52 fl oz", p:4.99, art:["carton","#e7f0fb","#2a7de1","LACTOSE FREE"]});
-prod("milk-choc",   {n:"Chocolate Milk", s:"half gal", p:3.59, art:["carton","#f3e2d2","#6b3b22","CHOCOLATE"]});
-prod("buns",        {n:"Brioche Burger Buns", s:"8 ct", p:4.49, art:["buns","#d9902f","#b0281f"]});
-prod("patties",     {n:"Angus Beef Patties", s:"4 ct, 1.33 lb", p:8.99, art:["tray","#8a3b26","#c43a2b"]});
-prod("cheese-sl",   {n:"American Cheese Slices", s:"16 ct", p:3.49, art:["slices","#f5b52e","#2a7de1"]});
-prod("pickles",     {n:"Dill Pickle Chips", s:"16 fl oz", p:2.99, art:["jar","#9cba48","#3d6b22","PICKLES"]});
-prod("ketchup",     {n:"Tomato Ketchup", s:"20 oz", p:2.79, art:["bottle","#c8261c","#1f1f1f","KETCHUP"]});
-prod("rings",       {n:"Frozen Onion Rings", s:"20 oz", p:4.29, art:["bag","#e3a33a","#2a6fd6","RINGS"]});
-prod("fz-marg",     {n:"Frozen Margherita Pizza", s:"17 oz", p:6.99, art:["pizzabox","#1c5c3a","#c8261c","MARGHERITA"]});
-prod("fz-pep",      {n:"Frozen Pepperoni Pizza", s:"20 oz", p:6.49, was:7.99, art:["pizzabox","#2b2b2b","#c8261c","PEPPERONI"]});
-prod("dough",       {n:"Fresh Pizza Dough", s:"16 oz", p:2.99, art:["bag","#efe3cc","#c98b3c","DOUGH"]});
-prod("sauce",       {n:"Classic Pizza Sauce", s:"14 oz", p:2.49, art:["jar","#c8261c","#2b2b2b","SAUCE"]});
-prod("mozz",        {n:"Shredded Mozzarella", s:"8 oz", p:3.29, art:["bag","#2a7de1","#f5f1e6","MOZZ"]});
-prod("pepperoni",   {n:"Sliced Pepperoni", s:"6 oz", p:3.99, art:["tray","#b8321f","#2b2b2b"]});
-prod("marsh",       {n:"Mini Marshmallows", s:"10 oz", p:2.29, art:["bag","#f6c7d8","#7cc4e8","MINI"]});
-prod("butter",      {n:"Unsalted Butter", s:"16 oz", p:4.99, art:["tub","#fbe39a","#f2c64a","BUTTER"]});
-prod("vanilla",     {n:"Pure Vanilla Extract", s:"2 fl oz", p:6.49, art:["bottle","#5a3a1e","#2b2b2b","VANILLA"]});
-prod("yogurt",      {n:"Plain Greek Yogurt", s:"32 oz", p:5.99, art:["cup","#2a7de1","#1f4d8f","GREEK"]});
-prod("mberries",    {n:"Mixed Berries", s:"12 oz", p:5.49, art:["berries","#c8263a","#e14b5c"]});
-prod("honey",       {n:"Clover Honey", s:"12 oz", p:4.29, art:["jar","#e9a21b","#7a4a08","HONEY"]});
-prod("eggs",        {n:"Large Grade A Eggs", s:"12 ct", p:3.99, art:["eggs","#c9b48a","#2a7de1"]});
-prod("brioche",     {n:"Brioche Loaf", s:"16 oz", p:4.99, art:["loaf","#d48a2c","#8a4f12"]});
-prod("maple",       {n:"Pure Maple Syrup", s:"12.5 fl oz", p:8.49, art:["bottle","#a35a14","#3d2208","MAPLE"]});
-prod("bananas",     {n:"Bananas", s:"About 2.4 lb", p:1.49, art:["bag","#f5d547","#6b8f2a",""]});
+function prod(id, o){ P[id] = Object.assign({id, store:"Safeway"}, o); return id; }
+Object.entries(BRANDS).forEach(([k,b]) => b.variants.forEach((v,i) => prod(`${k}-${i}`, {n:v.n, s:v.s, p:v.p, was:v.was, na:v.na, img:v.img, brand:k, vi:i})));
+const sw = (id, n, s, p, was, ic) => prod(id, {n, s, p, was, img:IC(ic)});
+// cereal
+sw("lc-fam",   "General Mills Lucky Charms with Marshmallows Family Size Cereal", "18.6 oz", 7.99, 9.99, "large_cbd4027c-f7f6-44de-87ac-52c5f6969221.png");
+sw("hnc-fam",  "General Mills Honey Nut Cheerios Family Size Cereal", "18.8 oz", 7.99, 9.99, "large_c160cda3-f3c8-4050-8018-4bc452d0cc87.png");
+sw("ctc-fam",  "General Mills Cinnamon Toast Crunch Family Size Cereal", "18.8 oz", 7.99, 9.99, "large_8e8c00ed-8579-43ab-b99f-4cc3819746da.png");
+sw("capn",     "Cap'N Crunch Crunch Berries Cereal", "11.7 oz", 5.99, 7.99, "large_4f99a017-9c38-41c4-9d61-b36ce69cf383.png");
+sw("pebbles",  "Post Fruity PEBBLES Breakfast Cereal", "11 oz", 5.75, 6.91, "large_e7bf11ce-1842-4620-939d-4d85c600f809.jpg");
+sw("frosted",  "Kellogg's Frosted Flakes Breakfast Cereal", "12 oz", 6.99, 7.99, "large_06cf1b2a-4f05-4e43-8a15-a78b2eb844bc.jpg");
+sw("specialk", "Kellogg's Special K Fruit & Yogurt Cereal", "12.6 oz", 6.99, 7.99, "large_4bd11206-290f-40d7-91ee-7f83546b7dcb.jpg");
+sw("cocoa",    "Post Cocoa Breakfast Cereal", "11 oz", 5.75, 6.91, "large_b20a81d9-f812-45dc-98c0-6e35cb2243dc.jpg");
+sw("grains",   "Post Great Grains Crunchy Pecan Cereal", "16 oz", 8.63, 0, "large_45fbebc6-c3b7-4cb3-bfe7-871c200a4804.jpeg");
+// dairy and breakfast
+sw("milk-w128","Lucerne Whole Milk", "128 fl oz", 6.99, 0, "large_1f0daedf-f4a0-4eb8-a54c-de3656820f43.png");
+sw("milk-2",   "Lucerne Milk, Reduced Fat, 2% Milkfat", "128 fl oz", 6.99, 0, "large_f29919c4-6586-4af3-9136-71ca6b5a2a2f.png");
+sw("milk-w64", "Lucerne Whole Milk", "64 fl oz", 4.69, 0, "large_c572e324-3dcb-46be-a4bf-4c69b1698a99.png");
+sw("oatly",    "Oatly Oatmilk", "64 fl oz", 6.99, 0, "large_d5495e54-138f-4b79-9ea6-d7c0905c507b.jpeg");
+sw("planetoat","Planet Oat Original Oatmilk", "52 fl oz", 4.69, 5.99, "large_b261f8f4-ed76-477a-a6bf-7fb44f2e16d0.jpg");
+sw("almond",   "Almond Breeze Unsweetened Original Almondmilk", "64 fl oz", 5.99, 0, "large_da08b082-b406-420d-b9d8-ca6b8dd49e01.jpg");
+sw("califia",  "Califia Farms Unsweetened Almond Milk", "48 fl oz", 5.89, 6.39, "large_7cfe3a3f-4f1e-4d84-8752-34eaf7d27561.jpg");
+sw("butter",   "Lucerne Butter, Unsalted", "16 oz", 6.99, 0, "large_2542d931-8b59-4d8f-afc5-7c0ca30669ca.png");
+sw("banana",   "Banana", "Sold individually · estimated", 0.33, 0, "large_482b20f9-2cfd-4ed9-869e-4a39b86cadac.jpeg");
+sw("eggs",     "Lucerne Eggs, Cage Free, Large", "12 ct", 4.69, 0, "large_ddeed89a-98ea-4165-b80a-137f006810d3.png");
+sw("brioche",  "Nature's Own Perfectly Crafted Thick Sliced Brioche Style Bread", "22 oz", 4.69, 5.99, "large_5ad2ff21-5f9e-4ceb-999a-1c7af40219f6.png");
+sw("yogurt",   "Mountain High Yoghurt Low Fat Plain Yogurt", "32 oz", 5.99, 6.99, "large_3bd2c19d-5ea5-4e67-8d85-59582ed4be4c.png");
+sw("honey",    "Signature SELECT Honey, Clover", "12 oz", 6.99, 0, "large_7e6ab924-4066-4d0f-b339-52459f1ac348.png");
+// recipe ingredients
+sw("chips",    "Toll House Premier White Morsels", "12 oz", 6.99, 8.99, "large_a1ed3ade-c93b-450e-890a-cfb2f47b395d.png");
+sw("sprinkles","Betty Crocker Parlor Perfect Rainbow Sprinkles", "9 oz", 6.99, 0, "large_0fe62ed2-3279-419a-b11c-3973e3c73915.jpeg");
+sw("cran",     "Ocean Spray Original Dried Cranberries", "6 oz", 2.88, 4.60, "large_073f1583-57c5-44c3-bc74-cd684369bf53.jpg");
+sw("bchips",   "Signature Farms Family Pack Banana Chips", "14 oz", 6.99, 0, "large_df5e3dfb-6496-4208-b200-f4f8d6d6b080.png");
+sw("almonds",  "Blue Diamond Roasted Salted Almonds", "6 oz", 4.04, 6.91, "large_2b351019-e25c-4962-b210-ce98263fdfcb.png");
+sw("pb",       "Jif Creamy Peanut Butter", "16 oz", 4.69, 4.99, "large_298665e1-c28e-4b06-bbb8-98858716ee13.jpg");
+// chips and dips
+sw("dor-cr-party","Doritos Tortilla Chips Cool Ranch Flavored, Party Size", "14.5 oz", 6.99, 8.99, "large_4829e96e-1ea3-4ad7-b0f9-7bad129733e5.jpeg");
+sw("dor-nc-party","Doritos Tortilla Chips, Nacho Cheese Flavored, Party Size", "14.5 oz", 6.99, 8.99, "large_34244818-aa9d-4050-b188-1cad4771507e.png");
+sw("dor-nkd",  "Doritos Simply NKD Cool Ranch Flavored Tortilla Chips", "9.25 oz", 5.99, 0, "large_24d6cc93-5eff-47a1-b194-7b557539b97b.jpeg");
+sw("scoops",   "Tostitos Scoops Tortilla Chips, Original", "14.5 oz", 6.99, 8.99, "large_0479d428-ce61-46cc-9ebd-75cffa8cea2a.png");
+sw("casa-thin","Casa Sanchez Tortilla Chips, Thin & Light", "14 oz", 5.99, 0, "large_aaf1db07-153d-4262-aec7-04dd2b2edc46.jpeg");
+sw("lays",     "Lay's Potato Chips Classic", "13 oz", 5.99, 6.99, "large_edf71921-4eb8-40b1-adbe-52ef8798aec7.png");
+sw("ruffles",  "Ruffles Original Potato Chips, Party Size", "13 oz", 6.99, 8.99, "large_4884c807-10c9-475d-bb8d-fc23338e63e7.jpeg");
+sw("kettle",   "Kettle Brand Sea Salt Potato Chips", "7.5 oz", 4.69, 5.99, "large_b37f65c1-7e4a-403b-9dfa-a9711e50ea35.jpg");
+sw("queso",    "Tostitos Salsa Con Queso, Medium", "15 oz", 7.99, 0, "large_a705b863-7e59-4477-a4ac-050c591357ae.png");
+sw("salsa",    "Casa Sanchez Salsa Roja, Medium", "15 oz", 8.99, 0, "large_c127e663-c719-4dfa-9a33-109c6ecaf80d.png");
+sw("guac",     "Herdez Guacamole Mild Cup", "15 oz", 7.99, 11.99, "large_98504412-2a1c-478c-b5c9-2db52c8efacc.jpg");
+sw("guac2",    "Casa Sanchez Guacamole, Real", "12 oz", 9.99, 0, "large_889e43d4-17c9-4d38-aa29-f0e6cf6bb34b.png");
+// ice cream and toppings
+sw("bj-cfb",   "Ben & Jerry's Chocolate Fudge Brownie Ice Cream Pint", "16 oz", 6.99, 8.99, "large_ed64b24d-1a69-4367-a0ac-1fe2fa277999.png");
+sw("bj-pbhb",  "Ben & Jerry's Peanut Butter Half Baked Chocolate & Peanut Butter Ice Cream Pint", "16 fl oz", 6.99, 8.99, "large_7f5bd156-6006-45c2-9096-2b8602ffdf5a.png");
+sw("bj-phish", "Ben & Jerry's Phish Food® Chocolate Ice Cream Pint", "16 oz", 6.99, 8.99, "large_5f1cdc15-8054-4ef9-95ba-4e81995a0672.png");
+sw("bj-straw", "Ben & Jerry's Strawberry Cheesecake Ice Cream Pint", "16 oz", 6.99, 8.99, "large_b9314768-49aa-4d75-a018-316d7004deaa.png");
+sw("hd-cherry","Häagen-Dazs Cherry Vanilla Ice Cream", "14 fl oz", 6.99, 7.99, "large_184a7df6-246e-4fde-bb19-67a4fced45be.jpg");
+sw("hd-rasp",  "Häagen-Dazs White Chocolate Raspberry Truffle Ice Cream", "14 fl oz", 6.99, 7.99, "large_89b3a30c-40fc-4920-bebc-e783176428b8.jpg");
+sw("sig-moose","Signature SELECT Ice Cream, Moose Tracks", "1.5 qt", 6.99, 7.99, "large_d51dd22b-26ca-43c5-aa33-9aab4c83ee51.png");
+sw("tillamook","Tillamook Cookies and Cream Ice Cream", "48 fl oz", 8.99, 0, "large_40ecf9af-e08f-4eb8-b0e8-cf6918685069.jpg");
+sw("cones",    "Joy Classic Waffle Cones", "12 ct", 5.99, 0, "large_82259729-57cf-4f5c-aaf3-dc833a199643.jpeg");
+sw("fudge",    "Smucker's Hot Fudge Toppings", "11.75 oz", 4.99, 5.99, "large_0b4fdb02-a3fa-4610-9f38-6a1e11ef6bc1.jpg");
+sw("reddiwip", "Reddi-wip Original Dairy Whipped Topping", "6.5 oz", 5.99, 6.99, "large_2033a304-8609-4ad5-b614-b3af0eee7970.jpg");
 
 const DESC = {
-  "gm-0":"Frosted toasted oat cereal with colorful marshmallow shapes. A breakfast classic from General Mills.",
-  "gm-1":"Whole grain oat cereal sweetened with real honey. Crunchy with cold milk or on its own as a snack.",
-  "gm-2":"Crispy wheat and rice squares coated in cinnamon and sugar. Great with milk, in a trail mix or crushed over yogurt.",
-  "bk-0":"Two flame-grilled beef patties with melted American cheese, crispy onion rings and smoky BBQ sauce on a sesame bun.",
-  "bk-1":"Flame-grilled beef with bacon, melted cheese, pickles and crispy onions on a soft pretzel bun.",
-  "bk-2":"Two flame-grilled beef patties with American cheese, lettuce, tomato, pickles, onions, ketchup and mayo on a sesame bun.",
-  "lc-0":"Large pizza with pepperoni and mozzarella on a classic crust. 8 slices.",
-  "lc-1":"Large pizza with mozzarella and tomato sauce on a classic crust. 8 slices.",
-  "lc-2":"Large pizza with green peppers, black olives, mozzarella and tomato sauce on a classic crust. 8 slices."
+  "gm-0":"Frosted toasted oat cereal with marshmallow hearts, stars, horseshoes, clovers, blue moons, unicorns, rainbows and red balloons, made with colors from natural sources. 19g whole grain per serving, 12 vitamins and minerals, and a good source of calcium. Gluten free.",
+  "gm-1":"Gluten free, sweetened whole grain oat cereal with real honey and natural almond flavor. 22g whole grain per serving.",
+  "gm-2":"Crispy, sweetened whole wheat and rice squares coated in Cinnadust, a mix of real cinnamon and sugar. 16g whole grain per serving, 12 vitamins and minerals, and a good source of calcium.",
+  "dor-0":"Cool Ranch flavored tortilla chips.",
+  "dor-1":"Nacho Cheese flavored tortilla chips.",
+  "dor-2":"Spicy Sweet Chili flavored tortilla chips.",
+  "bj-0":"Cherry ice cream with cherries and fudge flakes.",
+  "bj-1":"Black raspberry ice cream with raspberry swirls and crackling fudge chunks.",
+  "bj-2":"Banana ice cream with fudge chunks and walnuts."
 };
-const AISLE = {cereal:"Breakfast > Cereal", milk:"Dairy & eggs > Milk", burger:"Meat & seafood", pizza:"Frozen > Pizza", recipe:"Pantry"};
-const ADDON = {bk:{h:"Make it a meal", sub:"Choose 1", none:"Burger only", pid:"bk-meal", label:"Meal with medium fries and drink"},
-               lc:{h:"Add a side", sub:"Choose 1", none:"No side", pid:"lc-bread", label:"Garlic bread"}};
-prod("bk-meal",  {n:"Meal upgrade: medium fries and drink", s:"Burger King", p:3.99, store:"Burger King", art:["bag","#d62300","#f5ebdc","FRIES"]});
-prod("lc-bread", {n:"Garlic bread side", s:"Little Caesars", p:3.49, store:"Little Caesars", art:["bag","#f47b20","#fff3e0","BREAD"]});
+// Nutrition facts as listed on the Safeway product pages on Instacart
+const NUT = {
+  "gm-0":{srv:"8",   cal:140, fat:"1.5g", sod:"230mg", carb:"30g", fib:"2g", sug:"12g", add:"12g"},
+  "gm-1":{srv:"8",   cal:140, fat:"2g",   sod:"210mg", carb:"30g", fib:"3g", sug:"12g", add:"12g"},
+  "gm-2":{srv:"About 8", cal:170, fat:"4g", sod:"230mg", carb:"33g", fib:"3g", sug:"12g", add:"12g"}
+};
+// Official General Mills recipes. Ingredient amounts as published; steps shortened.
 const RECIPES = [
-  { title:"Lucky Charms Marshmallow Treats", time:"20 min", serves:12,
-    ings:[["gm-0","5 cups"],["marsh","10 oz bag"],["butter","3 tbsp"],["vanilla","1 tsp"]],
-    steps:["Melt the butter in a large pot over low heat.","Stir in the marshmallows until smooth, then add the vanilla.","Fold in the Lucky Charms until every piece is coated.","Press into a buttered 9x13 pan, cool for 30 minutes and cut into squares."] },
-  { title:"Honey Nut Cheerios Berry Parfait", time:"5 min", serves:2,
-    ings:[["gm-1","1 cup"],["yogurt","1.5 cups"],["mberries","1 cup"],["honey","2 tbsp"]],
-    steps:["Spoon half the yogurt into two glasses.","Add a layer of berries and a layer of Honey Nut Cheerios.","Repeat the layers and finish with a drizzle of honey.","Serve right away so the cereal stays crunchy."] },
-  { title:"Cinnamon Toast Crunch French Toast", time:"20 min", serves:4,
-    ings:[["gm-2","2 cups, crushed"],["eggs","3 large"],["milk-2","3/4 cup"],["brioche","8 slices"],["maple","To serve"]],
-    steps:["Crush the Cinnamon Toast Crunch into coarse crumbs on a plate.","Whisk the eggs and milk in a shallow dish.","Dip each slice of brioche in the egg mix, then press into the crumbs.","Cook in a buttered pan for 2 to 3 minutes a side and serve with maple syrup."] }
+  { title:"Lucky Charms™ Rainbow Bark", src:"luckycharms.com", time:"45 min", yield:"32 servings",
+    ings:[["gm-0","2 1/3 cups Original Lucky Charms cereal",1],["chips","3 cups white vanilla baking chips (two 12-oz bags)",2],["sprinkles","1 tablespoon rainbow candy sprinkles",1]],
+    pantry:[],
+    steps:["Spread the cereal on a large cookie sheet and set aside 1/2 cup of the marshmallows. Grease the sheet and line it with parchment or waxed paper.","Microwave the white chips on High about 2 minutes, stirring every 30 seconds, until smooth.","Spread the melted chips on the sheet in a 13x10-inch rectangle, about 1/4 inch thick.","Press the saved marshmallows and the sprinkles into the top right away. Chill about 30 minutes until firm, then break into pieces."] },
+  { title:"No-Bake Honey Nut Cheerios™ Bites", src:"bettycrocker.com", time:"1 hr 20 min", yield:"24 servings",
+    ings:[["gm-1","1 cup Honey Nut Cheerios cereal",1],["cran","1/2 cup sweetened dried cranberries",1],["bchips","1/2 cup dried banana chips",1],["almonds","1/2 cup salted roasted whole almonds",1],["pb","1/2 cup creamy peanut butter",1],["honey","2 tablespoons honey",1]],
+    pantry:["1 teaspoon vanilla","1/2 teaspoon ground cinnamon","1/4 teaspoon salt"],
+    steps:["Line a tray with parchment paper. Pulse all the ingredients in a food processor until finely chopped and blended.","With lightly wet hands, roll tablespoon-size portions into balls and set them on the tray.","Refrigerate about 1 hour until firm. Keep covered in the refrigerator up to 3 days."] },
+  { title:"Cinnamon Toast Crunch™ Cereal-Topped French Toast", src:"cinnamontoastcrunch.com", time:"25 min", yield:"6 servings",
+    ings:[["gm-2","2 cups Cinnamon Toast Crunch cereal, finely crushed",1],["brioche","6 slices brioche bread, 3/4 inch thick",1],["eggs","3 eggs, slightly beaten",1],["milk-2","3/4 cup milk",1],["banana","3 firm, ripe medium bananas, sliced",3],["butter","2 tablespoons butter",1],["yogurt","Plain low-fat yogurt, to serve",1]],
+    pantry:["1 tablespoon granulated sugar","2 tablespoons Cinnadust seasoning blend or cinnamon sugar"],
+    steps:["Melt the butter in a nonstick skillet over medium heat. Add the banana slices, sprinkle with sugar and cook 2 to 3 minutes. Keep warm.","Heat a griddle to 350°F. Whisk the eggs, milk and Cinnadust in one shallow bowl. Spread the crushed cereal in another.","Dip each bread slice in the egg mix, then press one side into the cereal. Cook cereal side up 3 to 4 minutes, flip and cook 2 to 3 minutes more.","Top with the warm bananas and serve with yogurt."] }
 ];
+const GROUPS = {
+  cereal:["capn","pebbles","frosted","specialk","cocoa","grains"],
+  milk:["milk-w128","milk-2","milk-w64","oatly","planetoat","almond","califia"],
+  breakfast:["eggs","brioche","banana","yogurt","butter","honey"],
+  baking:["chips","sprinkles","cran","bchips","almonds","pb"],
+  chips:["scoops","lays","ruffles","kettle","casa-thin","dor-nkd"],
+  dips:["queso","salsa","guac","guac2"],
+  icecream:["bj-cfb","bj-straw","hd-cherry","hd-rasp","sig-moose","tillamook"],
+  toppings:["cones","fudge","reddiwip","sprinkles"],
+  gm:["lc-fam","hnc-fam","ctc-fam"],
+  dor:["dor-cr-party","dor-nc-party","dor-nkd"],
+  bj:["bj-cfb","bj-pbhb","bj-phish","bj-straw"]
+};
+// What each brand's product page suggests alongside it
+const PAIR = { gm:["milk-2","banana","oatly","almond","yogurt"], dor:["queso","salsa","guac","guac2"], bj:["cones","fudge","reddiwip","sprinkles"] };
 
 /* ================= helpers ================= */
 const I = {
@@ -665,15 +696,16 @@ const I = {
 const esc = s => String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const money = n => "$" + n.toFixed(2);
 function priceHTML(p, was, cls=""){
+  if(p == null) return `<div class="price na ${cls}">Not carried here</div>`;
   const [d,c] = p.toFixed(2).split(".");
   return `<div class="price ${was?"deal":""} ${cls}">$${d}<sup>${c}</sup>${was?`<span class="was">${money(was)}</span>`:""}</div>`;
 }
 function pimg(id){
   const x = P[id];
-  return x.img ? `<img src="${x.img}" alt="" loading="lazy" decoding="async">` : art(...x.art);
+  return `<img src="${x.img}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">`;
 }
 function bdg(k, size=""){
-  const t = {bk:"BK", lc:"LC", gm:"G"}[k];
+  const t = {gm:"G", dor:"D", bj:"B&amp;J"}[k];
   return `<span class="bdg ${k} ${size}" aria-hidden="true">${t}</span>`;
 }
 
@@ -684,6 +716,7 @@ function addCtl(pid, mode=""){
   return `<div class="addc ${mode}" data-pid="${pid}" data-mode="${mode}">${addInner(pid, mode)}</div>`;
 }
 function addInner(pid, mode){
+  if(P[pid].na) return mode.includes("wide") ? `<span class="lbl" style="padding:0 16px">Not carried at this store</span>` : "";
   const q = qty(pid);
   if(!q) return `<button class="plus" data-act="inc" aria-label="Add ${esc(P[pid].n)}">${I.plus}</button>${mode.includes("wide")?`<span class="lbl" data-act="inc">Add to cart</span>`:""}`;
   return `<button class="plus" data-act="dec" aria-label="Remove one">${q===1?I.trash:I.minus}</button><span class="q">${q}</span><button class="plus" data-act="inc" aria-label="Add one">${I.plus}</button>`;
@@ -692,7 +725,7 @@ function setPid(el, pid){ el.dataset.pid = pid; }
 function refreshAdds(){
   document.querySelectorAll(".addc[data-pid]").forEach(el=>{
     const pid=el.dataset.pid, mode=el.dataset.mode||"";
-    el.classList.toggle("qty", qty(pid)>0);
+    el.classList.toggle("qty", qty(pid)>0); el.classList.toggle("na", !!P[pid].na);
     el.innerHTML = addInner(pid, mode);
   });
   const n = Object.values(CART).reduce((a,b)=>a+b,0);
@@ -703,6 +736,7 @@ function refreshAdds(){
   if(document.getElementById("sheet").classList.contains("on")) renderCart();
 }
 function addToCart(pid, n=1, silent=false){
+  if(P[pid].na){ toast(`${BRANDS[P[pid].brand].variants[P[pid].vi].short} isn't carried at this Safeway yet`); return; }
   CART[pid] = qty(pid) + n;
   if(CART[pid] <= 0) delete CART[pid];
   if(n>0){
@@ -723,24 +757,17 @@ function openCart(){ renderCart(); document.getElementById("sheet").classList.ad
 function closeCart(){ document.getElementById("sheet").classList.remove("on"); document.getElementById("sheetbg").classList.remove("on"); }
 function renderCart(){
   const ids = Object.keys(CART);
-  const groups = {};
-  ids.forEach(id=>{ const st=P[id].store; (groups[st] ||= []).push(id); });
   const total = ids.reduce((a,id)=>a+P[id].p*CART[id],0);
-  const body = ids.length ? Object.entries(groups).map(([st,list])=>{
-    const k = st==="Burger King"?"bk":st==="Little Caesars"?"lc":null;
-    const ic = k ? bdg(k,"sm") : `<span class="bdg sm" style="background:#e6f4e6">${I.leaf}</span>`;
-    const sub = k ? `Delivery in ${BRANDS[k].eta}` : "Delivery by 12:40pm";
-    return `<div class="cgrp"><div class="cgrp-h">${ic}${esc(st)}<span>${sub}</span></div>${list.map(id=>`
+  const body = ids.length ? `<div class="cgrp"><div class="cgrp-h"><img class="slogo" src="${SAFEWAY_LOGO}" alt="" referrerpolicy="no-referrer">Safeway<span>${ids.length} item${ids.length>1?"s":""}</span></div>${ids.map(id=>`
       <div class="cline"><div class="im">${pimg(id)}</div><div class="t"><b>${esc(P[id].n)}</b><span>${esc(P[id].s)}</span></div>
-      <div class="r"><span class="pr">${money(P[id].p*CART[id])}</span>${addCtl(id,"sm qty")}</div></div>`).join("")}</div>`;
-  }).join("") : `<div class="empty">${art("bag","#e6f4e6","#108910")}<b>Your cart is empty</b>Add something from a Flick to see it here.</div>`;
+      <div class="r"><span class="pr">${money(P[id].p*CART[id])}</span>${addCtl(id,"sm qty")}</div></div>`).join("")}</div>`
+    : `<div class="empty"><div style="display:grid;place-items:center;color:var(--ink-3)">${I.cart}</div><b>Your cart is empty</b>Add something from a Flick to see it here.</div>`;
   document.getElementById("sheet").innerHTML = `<div class="grab"></div>
     <div class="sheet-h"><h2>Your cart</h2><button class="iconbtn" onclick="closeCart()" aria-label="Close" style="background:var(--chip)">${I.x}</button></div>
     <div class="sheet-b">${body}</div>
     ${ids.length?`<div class="sheet-f"><div class="sum"><span>Subtotal</span><b>${money(total)}</b></div><button class="btn-g block" onclick="toast('Checkout is outside this demo')">Go to checkout</button></div>`:""}`;
   document.querySelectorAll("#sheet .addc").forEach(el=>{ el.classList.toggle("qty", qty(el.dataset.pid)>0); });
 }
-
 let toastT;
 function toast(t, pid){
   const el=document.getElementById("toast");
@@ -791,17 +818,19 @@ function mount(host){
     console.warn("[flicks] no vertex-ready from", s.id, BRANDS[s.brand].src);
   }, 9000);
 }
-function swatches(id){
+// Find the Flick's own button for an option number (works for both Flick skins in this demo).
+function swatchFor(id, i){
   const host = document.querySelector(`.flick[data-slot="${id}"]`);
-  try{ return host.querySelector("iframe").contentDocument.querySelector("vertex-player").shadowRoot.querySelectorAll(".vx-swatch"); }catch(e){ return []; }
+  try{ const r = host.querySelector("iframe").contentDocument.querySelector("vertex-player").shadowRoot;
+    return Array.from(r.querySelectorAll("button[data-vertex-diff]")).find(b=>+b.getAttribute("data-vertex-diff")===i) || null; }catch(e){ return null; }
 }
 // Switch the Flick from outside (product cards, flavor chips). Falls back to UI-only if the player isn't reachable.
 function setVariant(id, i){
   const s = SLOTS[id]; if(!s) return;
   s.want = i;
   if(s.ready){
-    const sw = swatches(id);
-    if(sw[i]){ s.prog = Date.now(); sw[i].click(); }
+    const sw = swatchFor(id, i);
+    if(sw){ s.prog = Date.now(); sw.click(); }
     else console.warn("[flicks] swatch not reachable for", id);
   }
   applyVariant(id, i);
@@ -842,12 +871,12 @@ window.addEventListener("message", e=>{
 
 /* ================= ad units ================= */
 // 1. Sponsored product: home row tile
-function sponsoredTile(id, k){
+function sponsoredTile(id, k, anchor){
   const b = BRANDS[k], v = b.variants[0];
   return `<div class="htile">
-    <div class="flickbox" data-anchor="sp">${flick(id, k, {on:i=>syncProduct(id,k,i)})}</div>
+    <div class="flickbox" data-anchor="${anchor}">${flick(id, k, {on:i=>syncProduct(id,k,i)})}</div>
     <div class="info"><div class="meta" onclick="go('#/product/${k}/'+SLOTS['${id}'].v)" style="cursor:pointer">
-      <div data-b="${id}" data-f="price">${priceHTML(v.p)}</div>
+      <div data-b="${id}" data-f="price">${priceHTML(v.p, v.was)}</div>
       <div class="pname" data-b="${id}" data-f="name" style="-webkit-line-clamp:1">${esc(v.n)}</div>
       <div class="psize"><span data-b="${id}" data-f="size">${v.s}</span> · <span class="spon">Sponsored</span></div>
     </div>${addCtl(`${k}-0`,"")}</div>
@@ -859,7 +888,7 @@ function sponsoredCard(id, k){
   return `<section class="spcard" data-anchor="sp" aria-label="Sponsored product">
     <div class="flickbox">${flick(id, k, {on:i=>syncProduct(id,k,i)})}</div>
     <div class="spinfo"><div class="meta" onclick="go('#/product/${k}/'+SLOTS['${id}'].v)" style="cursor:pointer">
-      <div data-b="${id}" data-f="price">${priceHTML(v.p)}</div>
+      <div data-b="${id}" data-f="price">${priceHTML(v.p, v.was)}</div>
       <div class="pname" data-b="${id}" data-f="name" style="font-weight:600">${esc(v.n)}</div>
       <div class="psize" data-b="${id}" data-f="size">${v.s}</div>
     </div>${addCtl(`${k}-0`,"wide")}</div>
@@ -870,7 +899,7 @@ function syncProduct(id, k, i){
   const v = BRANDS[k].variants[i];
   document.querySelectorAll(`[data-b="${id}"]`).forEach(el=>{
     const f = el.dataset.f;
-    if(f==="price") el.innerHTML = priceHTML(v.p);
+    if(f==="price") el.innerHTML = priceHTML(v.p, v.was);
     else if(f==="name") el.textContent = v.n;
     else if(f==="size") el.textContent = v.s;
     el.classList.remove("fade-swap"); void el.offsetWidth; el.classList.add("fade-swap");
@@ -880,24 +909,23 @@ function syncProduct(id, k, i){
   if(ctl){ setPid(ctl, `${k}-${i}`); refreshAdds(); }
 }
 
-// 2. Shoppable video and shoppable display: Flick plus synced product row, arrow opens the brand page
-const HEAD = { bk:"Your burger, your call", lc:"Pick tonight's pizza", gm:"Breakfast, three ways" };
+// 2. Shoppable video and shoppable display: Flick plus synced product row; the arrow opens the brand page
 function shoppableUnit(id, k, kind){
   const b = BRANDS[k];
   return `<section class="shop" data-anchor="${kind==="shoppable video"?"sv":"sd"}" aria-label="Sponsored ${kind}">
-    <button class="shop-h" onclick="go('#/page/${k}')">${bdg(k)}<span class="t"><b>${HEAD[k]}</b><span>Sponsored · ${b.name}</span></span><span class="go">${I.arrow}</span></button>
+    <button class="shop-h" onclick="go('#/page/${k}')">${bdg(k)}<span class="t"><b>${esc(b.head)}</b><span>Sponsored · ${esc(b.name)}</span></span><span class="go">${I.arrow}</span></button>
     <div class="flickbox">${flick(id, k)}</div>
     <div class="svprods">${b.variants.map((v,i)=>`
       <div class="svp ${i?"":"on"}" data-sync="${id}" data-i="${i}" role="button" tabindex="0" onclick="pickOrOpen('${id}',${i})">
-        <div class="im"><img src="${v.img}" alt="" decoding="async">${addCtl(`${k}-${i}`,"sm")}<span class="now">Showing</span></div>
-        ${priceHTML(v.p)}
+        <div class="im"><img src="${v.img}" alt="" decoding="async" referrerpolicy="no-referrer">${addCtl(`${k}-${i}`,"sm")}<span class="now">Showing</span></div>
+        ${priceHTML(v.p, v.was)}
         <div class="pname">${esc(v.short)}</div>
-        <div class="psize">${esc(b.eta ? b.name : v.s)}</div>
+        <div class="psize">${esc(v.s)}</div>
       </div>`).join("")}</div>
   </section>`;
 }
 
-// 3. Recipe ad
+// 3. Recipe ad (General Mills recipes, one per cereal)
 function recipeAd(id){
   const r = RECIPES[0];
   return `<section class="rcard" data-anchor="rc" aria-label="Sponsored recipe">
@@ -908,8 +936,9 @@ function recipeAd(id){
     <button class="btn-g block" onclick="go('#/recipe/'+SLOTS['${id}'].v)">Shop recipe</button>
   </section>`;
 }
-const recipeMeta = r => `${r.time} · Serves ${r.serves} · ${r.ings.length} ingredients`;
-const recipeRings = r => r.ings.slice(0,4).map(([pid])=>`<div class="ring"><div class="im">${pimg(pid)}</div><span>${esc(P[pid].n.replace(/ Cereal$/,""))}</span></div>`).join("");
+const recipeMeta = r => `${r.time} · ${r.yield} · ${r.ings.length + r.pantry.length} ingredients`;
+const recipeRings = r => r.ings.slice(0,4).map(([pid])=>`<div class="ring"><div class="im">${pimg(pid)}</div><span>${esc(shortName(pid))}</span></div>`).join("");
+function shortName(pid){ const x = P[pid]; if(x.brand) return BRANDS[x.brand].variants[x.vi].short; return x.n.replace(/^(Lucerne|Signature (SELECT|Farms)|Nature's Own Perfectly Crafted|Mountain High Yoghurt) /,"").split(",")[0]; }
 function syncRecipeAd(id, i){
   const r = RECIPES[i];
   document.querySelectorAll(`[data-r="${id}"]`).forEach(el=>{
@@ -924,54 +953,36 @@ function syncRecipeAd(id, i){
 function openP(pid){ const x = P[pid]; if(!x) return; go(x.brand ? `#/product/${x.brand}/${x.vi}` : `#/item/${pid}`); }
 // First tap on a product under a Flick switches the Flick to it; tapping the product already on screen opens it.
 function pickOrOpen(id, i){ const s = SLOTS[id]; if(s && s.v === i) go(`#/product/${s.brand}/${i}`); else setVariant(id, i); }
-function tile(pid, opt={}){
+function tile(pid){
   const x = P[pid];
   return `<div class="tile" onclick="openP('${pid}')" style="cursor:pointer"><div class="im">${pimg(pid)}${addCtl(pid)}</div>${priceHTML(x.p, x.was)}<div class="pname">${esc(x.n)}</div><div class="psize">${esc(x.s)}</div>${x.was?`<span class="badge">Save ${money(x.was-x.p)}</span>`:""}</div>`;
 }
-function restaurant(k, tint){
-  const b = BRANDS[k];
-  return `<button class="rest" onclick="go('#/page/${k}')" style="text-align:left">
-    <div class="cover" style="background:${tint}"><img src="${b.variants[0].img}" alt="" decoding="async">${bdg(k)}</div>
-    <b>${b.name}</b><span>${b.eta} · ${b.fee}</span></button>`;
-}
-function fakeRest(name, sub, tint, kind){
-  return `<button class="rest" onclick="toast('${esc(name)} is outside this demo')" style="text-align:left">
-    <div class="cover" style="background:${tint}"><div style="width:70%;height:90%">${art(kind[0],kind[1],kind[2],kind[3]||"")}</div></div><b>${name}</b><span>${sub}</span></button>`;
-}
+const row = ids => `<div class="row">${ids.map(tile).join("")}</div>`;
+const grid = ids => `<div class="grid">${ids.map(tile).join("")}</div>`;
 
 /* ================= screens ================= */
+const FOOT = `<div class="foot-note">Concept prototype by Flam. Products and prices from Safeway on Instacart. Not affiliated with or endorsed by Instacart, Safeway, General Mills, Doritos or Ben &amp; Jerry's.</div>`;
 function homeScreen(){
   return `<div class="screen" data-name="home">
     <div class="store">
       <div class="pad-top"></div>
       <div class="store-top">
         <button class="round" onclick="toast('Menu is outside this demo')" aria-label="Menu">${I.menu}</button>
-        <div class="store-id"><div class="store-logo"><span class="leaf">${I.leaf}</span>Greenleaf Market</div><div class="store-sub">In-store prices ${I.chev}</div></div>
+        <div class="store-id"><div class="store-logo"><img class="slogo" src="${SAFEWAY_LOGO}" alt="" referrerpolicy="no-referrer">Safeway</div></div>
         <button class="round" onclick="toast('Account is outside this demo')" aria-label="Account">${I.user}</button>
       </div>
-      <button class="sbox" onclick="go('#/search/')">${I.search}<span>Search products, stores, and restaurants</span></button>
-      <div class="seg"><button class="on">Delivery</button><button onclick="toast('Pickup is outside this demo')">Pickup</button><button onclick="toast('In-store is outside this demo')">In-store</button></div>
-      <div class="eta">${I.bolt}<span>Delivery by <b>12:40pm</b> to 450 Mission St</span></div>
+      <button class="sbox" onclick="go('#/search/')">${I.search}<span>Search Safeway</span></button>
+      <div class="seg"><button class="on">Delivery</button><button onclick="toast('Pickup is outside this demo')">Pickup</button></div>
     </div>
     <div class="scr" id="scr">
-      <div class="sec" id="sec-sp">
-        <div class="sec-h"><h2>Breakfast picks</h2><button onclick="go('#/search/cereal')">Show all</button></div>
-        <div class="row">${sponsoredTile("home-sp","gm")}${["oat-rings","granola","corn-flakes","oats"].map(id=>tile(id)).join("")}</div>
-      </div>
-      <div class="sec" id="sec-rc">
-        <div class="sec-h"><h2>Recipes for you</h2></div>
-        ${recipeAd("home-rc")}
-      </div>
-      <div class="sec">
-        <div class="sec-h"><h2>Order from restaurants</h2><button onclick="go('#/search/burger')">Show all</button></div>
-        <div class="row">${restaurant("bk","linear-gradient(135deg,#f5ebdc,#f0c9a0)")}${restaurant("lc","linear-gradient(135deg,#ffe2c7,#f7a35c)")}${fakeRest("Taqueria Sol","15-25 min · $1.49 delivery","linear-gradient(135deg,#e8f3dc,#bfdc9a)",["bag","#7db84a","#3d6b22","TACOS"])}</div>
-      </div>
-      <div class="sec">
-        <div class="sec-h"><h2>Buy it again</h2></div>
-        <div class="row">${["milk-2","eggs","bananas","brioche","yogurt"].map(id=>tile(id)).join("")}</div>
-      </div>
-      <div class="foot-note">Concept prototype by Flam. Not affiliated with or endorsed by Instacart, Burger King, Little Caesars or General Mills.</div>
-      <div style="height:70px"></div>
+      <div class="sec"><div class="sec-h"><h2>Breakfast picks</h2><button onclick="go('#/search/cereal')">Show all</button></div>
+        <div class="row">${sponsoredTile("home-sp","gm","sp")}${["capn","frosted","pebbles","specialk"].map(tile).join("")}</div></div>
+      <div class="sec"><div class="sec-h"><h2>Snack time</h2><button onclick="go('#/search/chips')">Show all</button></div>
+        <div class="row">${sponsoredTile("home-sp2","dor","sp2")}${["queso","salsa","scoops","lays"].map(tile).join("")}</div></div>
+      <div class="sec"><div class="sec-h"><h2>Recipes for you</h2></div>${recipeAd("home-rc")}</div>
+      <div class="sec"><div class="sec-h"><h2>Frozen treats</h2><button onclick="go('#/search/ice%20cream')">Show all</button></div>${row(["bj-0","bj-2","bj-cfb","bj-straw","hd-cherry"])}</div>
+      <div class="sec"><div class="sec-h"><h2>Buy it again</h2></div>${row(["milk-2","eggs","banana","brioche","butter"])}</div>
+      ${FOOT}<div style="height:70px"></div>
     </div>
     <nav class="bnav">
       <button class="on">${I.shop}Shop</button>
@@ -982,57 +993,54 @@ function homeScreen(){
   </div>`;
 }
 
-const QMAP = { cereal:"cereal", cereals:"cereal", breakfast:"cereal", "general mills":"cereal", "lucky charms":"cereal", cheerios:"cereal", "honey nut cheerios":"cereal", "cinnamon toast crunch":"cereal",
-  milk:"milk", "almond milk":"milk", "oat milk":"milk", recipe:"milk", recipes:"milk",
-  burger:"burger", burgers:"burger", whopper:"burger", "burger king":"burger", bk:"burger",
-  pizza:"pizza", pizzas:"pizza", "little caesars":"pizza", pepperoni:"pizza" };
+const QMAP = {};
+[["cereal",["cereal","cereals","general mills","lucky charms","cheerios","honey nut cheerios","cinnamon toast crunch"]],
+ ["chips",["chips","doritos","tortilla chips","snacks","nacho","potato chips"]],
+ ["icecream",["ice cream","ben & jerry's","ben and jerry's","ben & jerrys","ben and jerrys","pint","dessert"]],
+ ["breakfast",["breakfast","recipe","recipes","french toast"]],
+ ["milk",["milk","oat milk","almond milk"]]].forEach(([k,list])=>list.forEach(w=>QMAP[w]=k));
 const SUGG = [
-  ["cereal","Products + display","General Mills","gm-0"],
-  ["milk","Recipe ad","General Mills","gm-2"],
-  ["burger","Shoppable video","Burger King","bk-0"],
-  ["pizza","Shoppable video","Little Caesars","lc-0"]
+  ["cereal","Sponsored products","General Mills","gm-0"],
+  ["chips","Shoppable display","Doritos","dor-1"],
+  ["ice cream","Shoppable video","Ben & Jerry's","bj-0"],
+  ["breakfast","Recipe ad","General Mills","gm-2"]
 ];
 function searchScreen(q){
   const key = QMAP[q.trim().toLowerCase()] || "";
   let body = "";
   if(!q.trim()){
     body = `<div class="sugg"><div class="sugg-h">Try a search with a Flick ad</div>${SUGG.map(([s,f,b,pid])=>`
-      <button class="sugg-i" onclick="go('#/search/${s}')"><span class="ic">${pimg(pid)}</span><span class="t"><b>${s}</b><span>${b}</span></span><span class="tag">${f}</span></button>`).join("")}
-      <div class="sugg-h" style="margin-top:8px">Recent searches</div>
-      ${["bananas","greek yogurt","sparkling water"].map(s=>`<button class="sugg-i" onclick="go('#/search/${s}')"><span class="ic">${I.again}</span><span class="t"><b style="font-weight:500">${s}</b></span></button>`).join("")}</div>`;
+      <button class="sugg-i" onclick="go('#/search/${encodeURIComponent(s)}')"><span class="ic">${pimg(pid)}</span><span class="t"><b>${s}</b><span>${b}</span></span><span class="tag">${f}</span></button>`).join("")}</div>`;
   } else if(key==="cereal"){
-    body = chipsRow(["Cereal","Granola","Oatmeal","Organic","Gluten free"]) + sponsoredCard("s-sp","gm") +
-      resultsHead(q) + `<div class="grid">${["oat-rings","granola","corn-flakes","choc-puffs"].map(id=>tile(id)).join("")}</div>` +
-      `<div id="anc-sd">${shoppableUnit("s-sd","gm","shoppable display")}</div>` +
-      `<div class="grid" style="margin-top:14px">${["bran","oats"].map(id=>tile(id)).join("")}</div>`;
+    body = chipsRow(["Cereal","Granola","Oatmeal","Gluten-free","Kid friendly"]) + sponsoredCard("s-sp","gm") + resultsHead(q) + grid(GROUPS.cereal);
+  } else if(key==="chips"){
+    body = chipsRow(["Tortilla chips","Potato chips","Dips & salsa","Party size"]) + shoppableUnit("s-sd","dor","shoppable display") + resultsHead(q) + grid(GROUPS.chips) +
+      `<div class="sec"><div class="sec-h"><h2>Dips &amp; salsa</h2></div>${row(GROUPS.dips)}</div>`;
+  } else if(key==="icecream"){
+    body = chipsRow(["Pints","Tubs","Bars","Non-dairy","Toppings"]) + shoppableUnit("s-sv","bj","shoppable video") + resultsHead(q) + grid(GROUPS.icecream) +
+      `<div class="sec"><div class="sec-h"><h2>Make it a sundae</h2></div>${row(GROUPS.toppings)}</div>`;
+  } else if(key==="breakfast"){
+    body = chipsRow(["Eggs","Bread","Fruit","Yogurt","Dairy"]) + recipeAd("s-rc") + resultsHead(q) + grid(GROUPS.breakfast);
   } else if(key==="milk"){
-    body = chipsRow(["Dairy milk","Plant based","Lactose free","Organic","Flavored"]) + recipeAd("s-rc") +
-      resultsHead(q) + `<div class="grid">${["milk-2","milk-whole","milk-oat","milk-almond","milk-lf","milk-choc"].map(id=>tile(id)).join("")}</div>`;
-  } else if(key==="burger"){
-    body = chipsRow(["Restaurants","Burger buns","Patties","Cheese","Condiments"]) + shoppableUnit("s-sv-bk","bk","shoppable video") +
-      `<div class="sec"><div class="sec-h"><h2>Restaurants</h2></div><div class="row">${restaurant("bk","linear-gradient(135deg,#f5ebdc,#f0c9a0)")}${fakeRest("Smash Shack","20-30 min · $1.99 delivery","linear-gradient(135deg,#fde7e2,#f4a99a)",["buns","#d9902f","#b0281f"])}</div></div>` +
-      resultsHead(q, "From Greenleaf Market") + `<div class="grid">${["buns","patties","cheese-sl","pickles","ketchup","rings"].map(id=>tile(id)).join("")}</div>`;
-  } else if(key==="pizza"){
-    body = chipsRow(["Restaurants","Frozen pizza","Dough","Sauce","Cheese"]) + shoppableUnit("s-sv-lc","lc","shoppable video") +
-      `<div class="sec"><div class="sec-h"><h2>Restaurants</h2></div><div class="row">${restaurant("lc","linear-gradient(135deg,#ffe2c7,#f7a35c)")}${fakeRest("Forno Slice Co.","25-40 min · $2.49 delivery","linear-gradient(135deg,#fff1d6,#f2c26b)",["pizzabox","#1c5c3a","#c8261c","SLICE"])}</div></div>` +
-      resultsHead(q, "From Greenleaf Market") + `<div class="grid">${["fz-marg","fz-pep","dough","sauce","mozz","pepperoni"].map(id=>tile(id)).join("")}</div>`;
+    body = chipsRow(["Dairy milk","Oat milk","Almond milk"]) + resultsHead(q) + grid(GROUPS.milk);
   } else {
-    body = `<div class="empty" style="padding-top:50px">${art("bag","#e6f4e6","#108910")}<b>No Flick ads for "${esc(q)}"</b>This demo has Flicks on cereal, milk, burger and pizza.<div style="display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap">${SUGG.map(([s])=>`<button class="chip" onclick="go('#/search/${s}')">${s}</button>`).join("")}</div></div>`;
+    body = `<div class="empty" style="padding-top:50px"><div style="display:grid;place-items:center;color:var(--ink-3)">${I.search}</div><b>No results in this demo for "${esc(q)}"</b>Try one of these searches.<div style="display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap">${SUGG.map(([s])=>`<button class="chip" onclick="go('#/search/${encodeURIComponent(s)}')">${s}</button>`).join("")}</div></div>`;
   }
   return `<div class="screen" data-name="search">
     <div class="pad-top"></div>
     <div class="shdr">
       <button class="iconbtn" onclick="back()" aria-label="Back">${I.back}</button>
-      <form class="sfield" onsubmit="event.preventDefault();go('#/search/'+encodeURIComponent(this.q.value.trim()))">${I.search}<input name="q" value="${esc(q)}" placeholder="Search products, stores, and restaurants" autocomplete="off" enterkeyhint="search">${q?`<button type="button" class="clr" onclick="go('#/search/')" aria-label="Clear">${I.x}</button>`:""}</form>
+      <form class="sfield" onsubmit="event.preventDefault();go('#/search/'+encodeURIComponent(this.q.value.trim()))">${I.search}<input name="q" value="${esc(q)}" placeholder="Search Safeway" autocomplete="off" enterkeyhint="search">${q?`<button type="button" class="clr" onclick="go('#/search/')" aria-label="Clear">${I.x}</button>`:""}</form>
       <button class="iconbtn" onclick="toast('Filters are outside this demo')" aria-label="Filters" style="width:32px">${I.filter}</button>${cartChip()}
     </div>
-    <div class="scr" id="scr">${body}<div class="foot-note">Concept prototype by Flam. Not affiliated with or endorsed by Instacart, Burger King, Little Caesars or General Mills.</div><div style="height:60px"></div></div>
+    <div class="scr" id="scr">${body}${FOOT}<div style="height:60px"></div></div>
   </div>`;
 }
 const cartChip = () => `<button class="cartchip" onclick="openCart()" aria-label="Open cart">${I.cart}<span data-cartn>0</span></button>`;
 function chipsRow(list){ return `<div class="chips">${list.map((c,i)=>`<button class="chip ${i?"":"on"}" onclick="this.parentNode.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));this.classList.add('on')">${c}</button>`).join("")}</div>`; }
 function resultsHead(q, t){ return `<div class="sec-h" style="margin-top:20px"><h2>${t||`Results for "${esc(q)}"`}</h2></div>`; }
 
+/* ================= recipe page ================= */
 function recipeScreen(i){
   i = Math.max(0, Math.min(2, i|0));
   return `<div class="screen" data-name="recipe">
@@ -1045,181 +1053,126 @@ function recipeScreen(i){
     <div class="sticky"><button class="btn-g block" id="rpadd" onclick="addRecipe()"></button></div>
   </div>`;
 }
-let RSEL = new Set();
+let RSEL = new Map();
 function fillRecipe(i){
   const r = RECIPES[i];
-  RSEL = new Set(r.ings.map(x=>x[0]));
+  RSEL = new Map(r.ings.map(([pid,,q])=>[pid,q]));
   document.getElementById("rpbody").innerHTML = `
     <div class="rp-by">${bdg("gm","xs")}<span>Sponsored by <b style="color:var(--ink)">General Mills</b></span></div>
     <h1 class="fade-swap">${esc(r.title)}</h1>
-    <div class="pills"><span class="pill">${I.clock}${r.time}</span><span class="pill">${I.people}Serves ${r.serves}</span><span class="pill">${I.bag}${r.ings.length} ingredients</span></div>
+    <div class="pills"><span class="pill">${I.clock}${r.time}</span><span class="pill">${I.people}${r.yield}</span><span class="pill">${I.bag}${r.ings.length + r.pantry.length} ingredients</span></div>
     <div class="ing-h"><h2>Ingredients</h2><button onclick="toggleAll()">Select all</button></div>
-    ${r.ings.map(([pid,amt])=>`<button class="ing sel" data-ing="${pid}" onclick="toggleIng('${pid}')"><span class="chk">${I.check}</span><span class="im">${pimg(pid)}</span><span class="t"><b>${esc(P[pid].n)}${P[pid].brand?`<span class="feat">Featured</span>`:""}</b><span>${esc(amt)} · ${esc(P[pid].s)}</span></span><span class="pr">${money(P[pid].p)}</span></button>`).join("")}
+    ${r.ings.map(([pid,amt,q])=>`<button class="ing sel" data-ing="${pid}" data-q="${q}" onclick="toggleIng('${pid}')"><span class="chk">${I.check}</span><span class="im">${pimg(pid)}</span><span class="t"><b>${esc(amt)}</b><span>${q>1?q+" × ":""}${esc(P[pid].n)} · ${esc(P[pid].s)}</span></span><span class="pr">${money(P[pid].p*q)}</span></button>`).join("")}
+    ${r.pantry.length?`<div class="ing-h" style="margin-top:18px"><h2 style="font-size:15px">From your pantry</h2></div>${r.pantry.map(t=>`<div class="pan">${esc(t)}</div>`).join("")}`:""}
     <h2 class="dir-h">Directions</h2>
     ${r.steps.map((s,n)=>`<div class="step"><i>${n+1}</i><p>${esc(s)}</p></div>`).join("")}
-    <div class="foot-note">Switch the cereal in the video above to change the recipe.</div>`;
+    <div class="src">Recipe from ${esc(r.src)}</div>`;
   updateRecipeBtn();
 }
-function toggleIng(pid){ RSEL.has(pid)?RSEL.delete(pid):RSEL.add(pid); document.querySelector(`.ing[data-ing="${pid}"]`).classList.toggle("sel", RSEL.has(pid)); updateRecipeBtn(); }
-function toggleAll(){ const all=[...document.querySelectorAll(".ing")].map(e=>e.dataset.ing); const on = RSEL.size<all.length; RSEL=new Set(on?all:[]); document.querySelectorAll(".ing").forEach(e=>e.classList.toggle("sel",on)); updateRecipeBtn(); }
+function toggleIng(pid){ const el = document.querySelector(`.ing[data-ing="${pid}"]`); if(RSEL.has(pid)) RSEL.delete(pid); else RSEL.set(pid, +el.dataset.q); el.classList.toggle("sel", RSEL.has(pid)); updateRecipeBtn(); }
+function toggleAll(){ const els=[...document.querySelectorAll(".ing")]; const on = RSEL.size<els.length; RSEL = new Map(on ? els.map(e=>[e.dataset.ing, +e.dataset.q]) : []); els.forEach(e=>e.classList.toggle("sel",on)); updateRecipeBtn(); }
 function updateRecipeBtn(){
-  const t = [...RSEL].reduce((a,id)=>a+P[id].p,0);
-  document.getElementById("rpadd").innerHTML = RSEL.size ? `<span>Add ${RSEL.size} ingredient${RSEL.size>1?"s":""} to cart</span><span>${money(t)}</span>` : `<span>Select ingredients</span><span></span>`;
+  let n = 0, t = 0; RSEL.forEach((q,id)=>{ n += q; t += P[id].p*q; });
+  document.getElementById("rpadd").innerHTML = RSEL.size ? `<span>Add ${n} item${n>1?"s":""} to cart</span><span>${money(t)}</span>` : `<span>Select ingredients</span><span></span>`;
 }
 function addRecipe(){
   if(!RSEL.size) return;
-  const n = RSEL.size; RSEL.forEach(id=>addToCart(id,1,true));
-  toast(`Added ${n} ingredients to your cart`, [...RSEL].find(id=>P[id].brand));
+  let n = 0; RSEL.forEach((q,id)=>{ addToCart(id,q,true); n += q; });
+  toast(`Added ${n} items to your cart`, [...RSEL.keys()][0]);
   setTimeout(openCart, 450);
 }
 
-const GROUPS = {
-  cereal:["oat-rings","granola","corn-flakes","choc-puffs","bran","oats"],
-  milk:["milk-2","milk-whole","milk-oat","milk-almond","milk-lf","milk-choc"],
-  burger:["buns","patties","cheese-sl","pickles","ketchup","rings"],
-  pizza:["fz-marg","fz-pep","dough","sauce","mozz","pepperoni"],
-  recipe:["marsh","butter","vanilla","yogurt","mberries","honey","eggs","brioche","maple","bananas"]
-};
-const groupOf = pid => Object.keys(GROUPS).find(g=>GROUPS[g].includes(pid)) || "recipe";
+/* ================= product pages ================= */
 function unitPrice(x){
+  if(x.p == null) return "";
   const m = /^([\d.]+)\s*(fl oz|oz)$/.exec(x.s||""); if(!m) return "";
   return `$${(x.p/parseFloat(m[1])).toFixed(2)}/${m[2]}`;
 }
-const CHECK = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>`;
-
 function productScreen(k, i){
   if(!BRANDS[k]) k = "gm";
   i = Math.max(0, Math.min(BRANDS[k].variants.length-1, i|0));
-  return k === "gm" ? groceryPage(`${k}-${i}`) : restaurantPage(k, i);
+  return groceryPage(`${k}-${i}`);
 }
 function itemScreen(pid){
   if(!P[pid]) pid = "milk-2";
   if(P[pid].brand) return productScreen(P[pid].brand, P[pid].vi);
   return groceryPage(pid);
 }
-// Grocery item page. For a General Mills product the hero is the Flick and the flavor chips stay in sync with it.
+// Item page. For a brand in this demo the hero is its Flick and the option chips stay in sync with it.
 function groceryPage(pid){
   const x = P[pid], k = x.brand, b = k ? BRANDS[k] : null;
-  const g = k ? "cereal" : groupOf(pid);
-  const up = unitPrice(x);
   const hero = k
     ? `<div class="flickbox">${flick("pp", k, {v:x.vi, cta:"add", on:j=>syncPP(k,j)})}</div><div class="pdots">${b.variants.map((_,j)=>`<i data-sync="pp" data-i="${j}" class="${j===x.vi?"on":""}"></i>`).join("")}</div>`
     : `<div class="pd-art">${pimg(pid)}</div>`;
-  const brandLine = k
-    ? `<button class="pd-brand" onclick="go('#/page/${k}')">${b.name} ${I.chev}</button>`
-    : `<span class="pd-brand" style="color:var(--ink-2)">Greenleaf Market</span>`;
-  const opts = k ? `<div class="pd-opt"><h3>Flavor: <span data-pp="short">${esc(b.variants[x.vi].short)}</span></h3>
-      <div class="ochips">${b.variants.map((v,j)=>`<button class="ochip ${j===x.vi?"on":""}" data-sync="pp" data-i="${j}" onclick="setVariant('pp',${j})"><img src="${v.img}" alt="">${esc(v.short)}</button>`).join("")}</div></div>` : "";
-  const desc = DESC[pid] || `${x.n}, ${x.s}. Picked fresh and delivered from Greenleaf Market.`;
-  const also = (k ? ["milk-2","bananas","mberries","milk-oat","yogurt"] : GROUPS[g].filter(id=>id!==pid).slice(0,5));
-  const more = k ? b.variants.map((_,j)=>`${k}-${j}`) : GROUPS[g==="milk"?"cereal":"milk"].slice(0,4);
   return `<div class="screen" data-name="product">
     <div class="pad-top"></div>
-    <div class="pp-hdr"><button class="iconbtn" onclick="back()" aria-label="Back">${I.back}</button><span class="ttl">Greenleaf Market</span><span style="display:flex;align-items:center;gap:2px"><button class="iconbtn" onclick="go('#/search/')" aria-label="Search">${I.search}</button>${cartChip()}</span></div>
+    <div class="pp-hdr"><button class="iconbtn" onclick="back()" aria-label="Back">${I.back}</button><span class="ttl"><img class="slogo sm" src="${SAFEWAY_LOGO}" alt="" referrerpolicy="no-referrer">Safeway</span><span style="display:flex;align-items:center;gap:2px"><button class="iconbtn" onclick="go('#/search/')" aria-label="Search">${I.search}</button>${cartChip()}</span></div>
     <div class="scr" id="scr">
       <div class="hero">${hero}</div>
-      <div class="pd">
-        ${brandLine}
-        <h1 data-pp="name">${esc(x.n)}</h1>
-        <div class="pd-size"><span data-pp="size">${esc(x.s)}</span><span data-pp="unit">${up?` · ${up}`:""}</span></div>
-        <div class="pd-pr"><span data-pp="price">${priceHTML(x.p, x.was)}</span><span class="stock">${CHECK}Many in stock</span></div>
-        ${opts}
-        <div class="pd-card"><span class="bdg sm" style="background:#fff">${I.leaf}</span><span class="t"><b>Delivery by 12:40pm</b><span>Greenleaf Market · In-store prices</span></span></div>
-        <div class="pd-sec"><h2>Details</h2><p data-pp="desc">${esc(desc)}</p></div>
-        <div class="pd-sec"><h2>Product info</h2><dl class="pd-dl"><dt>Brand</dt><dd>${k?b.name:"Greenleaf Market"}</dd><dt>Size</dt><dd data-pp="size2">${esc(x.s)}</dd><dt>Aisle</dt><dd>${AISLE[g]}</dd><dt>Sold by</dt><dd>Greenleaf Market</dd></dl></div>
-        <div class="sec"><div class="sec-h"><h2>Often bought with</h2></div><div class="row">${also.map(id=>tile(id)).join("")}</div></div>
-        <div class="sec"><div class="sec-h"><h2>${k?"More from "+b.name:"You might also like"}</h2></div><div class="row">${more.map(id=>tile(id)).join("")}</div></div>
-      </div>
+      <div class="pd" id="pdbody">${pdBody(pid)}</div>
     </div>
     <div class="pd-bar">${addCtl(pid,"wide")}</div>
   </div>`;
 }
-function syncPP(k, j){
-  const v = BRANDS[k].variants[j], pid = `${k}-${j}`;
-  if(k !== "gm"){ syncRP(j); return; }
-  const set=(f,h)=>document.querySelectorAll(`[data-pp="${f}"]`).forEach(el=>{ el.innerHTML=h; el.classList.remove("fade-swap"); void el.offsetWidth; el.classList.add("fade-swap"); });
-  const up = unitPrice(P[pid]);
-  set("name", esc(v.n)); set("price", priceHTML(v.p)); set("size", esc(v.s)); set("size2", esc(v.s)); set("unit", up?` · ${up}`:""); set("short", esc(v.short)); set("desc", esc(DESC[pid]||""));
-  const ctl = document.querySelector(".pd-bar .addc"); if(ctl){ setPid(ctl, pid); refreshAdds(); }
-  keepHash(`#/product/${k}/${j}`);
+function pdBody(pid){
+  const x = P[pid], k = x.brand, b = k ? BRANDS[k] : null;
+  const up = unitPrice(x), nut = NUT[pid];
+  const g = k || Object.keys(GROUPS).find(gr=>GROUPS[gr].includes(pid)) || "breakfast";
+  const brandLine = k ? `<button class="pd-brand" onclick="go('#/page/${k}')">${esc(b.name)} ${I.chev}</button>` : "";
+  const opts = k ? `<div class="pd-opt"><h3>${b.unit[0].toUpperCase()+b.unit.slice(1)}: <span>${esc(b.variants[x.vi].short)}</span></h3>
+      <div class="ochips">${b.variants.map((v,j)=>`<button class="ochip ${j===x.vi?"on":""}" data-sync="pp" data-i="${j}" onclick="setVariant('pp',${j})"><img src="${v.img}" alt="" referrerpolicy="no-referrer">${esc(v.short)}</button>`).join("")}</div></div>` : "";
+  const price = x.na
+    ? `<div class="pd-na"><b>Not carried at this Safeway yet</b>${esc(b.variants[x.vi].short)} launched in 2026 and isn't listed at Safeway on Instacart. Pick another flavor above.</div>`
+    : `<div class="pd-pr">${priceHTML(x.p, x.was)}${x.was?`<span class="stock">Save ${money(x.was-x.p)}</span>`:""}</div>`;
+  const nutHTML = nut ? `<div class="pd-sec"><h2>Nutrition facts</h2><dl class="pd-dl nut">
+      <dt>Servings</dt><dd>${nut.srv} per container</dd><dt>Calories</dt><dd>${nut.cal} per serving</dd><dt>Total fat</dt><dd>${nut.fat}</dd><dt>Sodium</dt><dd>${nut.sod}</dd>
+      <dt>Total carbs</dt><dd>${nut.carb}</dd><dt>Dietary fiber</dt><dd>${nut.fib}</dd><dt>Total sugars</dt><dd>${nut.sug} (incl. ${nut.add} added)</dd></dl></div>` : "";
+  const also = k ? PAIR[k] : GROUPS[g].filter(id=>id!==pid).slice(0,5);
+  const more = k ? b.variants.map((_,j)=>`${k}-${j}`).filter(id=>id!==pid).concat(GROUPS[k]) : null;
+  return `${brandLine}
+    <h1 class="fade-swap">${esc(x.n)}</h1>
+    <div class="pd-size">${esc(x.s)}${up?` · ${up}`:""}</div>
+    ${price}
+    ${opts}
+    <div class="pd-card"><img class="slogo" src="${SAFEWAY_LOGO}" alt="" referrerpolicy="no-referrer"><span class="t"><b>Sold by Safeway</b><span>Delivered by Instacart</span></span></div>
+    ${DESC[pid]?`<div class="pd-sec"><h2>Details</h2><p>${esc(DESC[pid])}</p></div>`:""}
+    ${nutHTML}
+    <div class="sec"><div class="sec-h"><h2>${k?"Goes well with":"You might also like"}</h2></div>${row(also)}</div>
+    ${more?`<div class="sec"><div class="sec-h"><h2>More from ${esc(b.name)}</h2></div>${row(more)}</div>`:""}`;
 }
-
-// Restaurant item page (Burger King, Little Caesars): options, quantity and a total that updates.
 // Keep the address in step with the option on screen, so Back returns to it.
 function keepHash(h){ history.replaceState(null, "", h); CURH = lastHash = h; if(NAV.length) NAV[NAV.length-1] = h; }
-let RO = {k:"bk", i:0, q:1, opt:0};
-function restaurantPage(k, i){
-  const b = BRANDS[k], v = b.variants[i], ad = ADDON[k];
-  RO = {k, i, q:1, opt:0};
-  return `<div class="screen" data-name="product">
-    <div class="pad-top"></div>
-    <div class="pp-hdr"><button class="iconbtn" onclick="back()" aria-label="Back">${I.back}</button><button class="ttl" onclick="go('#/page/${k}')">${bdg(k,"sm")}${b.name}</button>${cartChip()}</div>
-    <div class="scr" id="scr">
-      <div class="hero"><div class="flickbox">${flick("pp", k, {v:i, cta:"add", on:j=>syncPP(k,j)})}</div><div class="pdots">${b.variants.map((_,j)=>`<i data-sync="pp" data-i="${j}" class="${j===i?"on":""}"></i>`).join("")}</div></div>
-      <div class="pd">
-        <h1 data-pp="name">${esc(v.n)}</h1>
-        <div class="pd-size"><span data-pp="price-t">${money(v.p)}</span> · ${b.name}</div>
-        <p data-pp="desc" style="margin:10px 0 0;font-size:14px;line-height:1.5;color:#4a4d52">${esc(DESC[`${k}-${i}`])}</p>
-        <div class="pd-card"><span class="bdg sm" style="background:#fff">${I.bolt}</span><span class="t"><b>Delivery in ${b.eta}</b><span>${b.fee} · Hot and fresh from ${b.name}</span></span></div>
-        <div class="og"><div class="og-h"><h3>Choose your ${b.unit}</h3><span class="req ok">Selected</span></div>
-          <div class="ochips" style="margin-top:12px">${b.variants.map((x,j)=>`<button class="ochip ${j===i?"on":""}" data-sync="pp" data-i="${j}" onclick="setVariant('pp',${j})"><img src="${x.img}" alt="">${esc(x.short)}</button>`).join("")}</div></div>
-        <div class="og"><div class="og-h"><h3>${ad.h}</h3><span class="req">Required</span></div><div class="og-sub">${ad.sub}</div>
-          <button class="radio on" data-ro="0" onclick="ropt(0)"><span class="r"></span>${ad.none}</button>
-          <button class="radio" data-ro="1" onclick="ropt(1)"><span class="r"></span>${ad.label}<span class="pr">+${money(P[ad.pid].p)}</span></button></div>
-        <div class="og"><div class="og-h"><h3>Special instructions</h3></div><textarea class="note" placeholder="Add a note for the restaurant"></textarea></div>
-        <div class="sec"><div class="sec-h"><h2>More from ${b.name}</h2></div><div class="row">${b.variants.map((_,j)=>tile(`${k}-${j}`)).join("")}</div></div>
-      </div>
-    </div>
-    <div class="pd-bar"><div class="qstep"><button onclick="rq(-1)" aria-label="Less">${I.minus}</button><b id="rq">1</b><button onclick="rq(1)" aria-label="More">${I.plus}</button></div><button class="btn-g rbtn" id="rbtn" onclick="radd()"></button></div>
-  </div>`;
-}
-function syncRP(j){
-  const k = RO.k, v = BRANDS[k].variants[j];
-  RO.i = j;
-  const set=(f,h)=>document.querySelectorAll(`[data-pp="${f}"]`).forEach(el=>{ el.innerHTML=h; el.classList.remove("fade-swap"); void el.offsetWidth; el.classList.add("fade-swap"); });
-  set("name", esc(v.n)); set("price-t", money(v.p)); set("desc", esc(DESC[`${k}-${j}`]));
-  rtotal();
+function syncPP(k, j){
+  const pid = `${k}-${j}`;
+  const body = document.getElementById("pdbody"); if(!body) return;
+  body.innerHTML = pdBody(pid);
+  document.querySelectorAll('[data-sync="pp"]').forEach(el=>el.classList.toggle("on", +el.dataset.i===j));
+  const ctl = document.querySelector(".pd-bar .addc"); if(ctl){ setPid(ctl, pid); }
+  refreshAdds();
   keepHash(`#/product/${k}/${j}`);
 }
-function rq(d){ RO.q = Math.max(1, Math.min(20, RO.q + d)); document.getElementById("rq").textContent = RO.q; rtotal(); }
-function ropt(n){ RO.opt = n; document.querySelectorAll("[data-ro]").forEach(el=>el.classList.toggle("on", +el.dataset.ro===n)); document.querySelector(".og .req:not(.ok)")?.classList.add("ok"); rtotal(); }
-function rtotal(){
-  const btn = document.getElementById("rbtn"); if(!btn) return;
-  const v = BRANDS[RO.k].variants[RO.i], extra = RO.opt ? P[ADDON[RO.k].pid].p : 0;
-  btn.classList.remove("done");
-  btn.innerHTML = `<span>Add ${RO.q} to cart</span><span>${money((v.p+extra)*RO.q)}</span>`;
-}
-function radd(){
-  const pid = `${RO.k}-${RO.i}`;
-  addToCart(pid, RO.q, true);
-  if(RO.opt) addToCart(ADDON[RO.k].pid, RO.q, true);
-  toast(`Added ${RO.q} × ${BRANDS[RO.k].variants[RO.i].n}`, pid);
-  const btn = document.getElementById("rbtn"); btn.classList.add("done");
-  btn.innerHTML = `<span style="display:flex;align-items:center;gap:8px">${I.check}Added to cart</span><span>View</span>`;
-  btn.onclick = ()=>{ openCart(); btn.onclick = radd; rtotal(); };
-}
 
+/* ================= brand pages ================= */
 function pageScreen(k){
   if(!BRANDS[k]) k = "gm";
   const b = BRANDS[k];
-  const strip = k==="gm"
-    ? `<div class="pg-strip"><span class="bdg sm" style="background:#e6f4e6">${I.leaf}</span><span class="t"><b>Greenleaf Market</b><span>${I.bolt}Delivery by 12:40pm</span></span>${I.chev}</div>`
-    : `<div class="pg-strip">${bdg(k,"sm")}<span class="t"><b>${b.name}</b><span>${I.bolt}Delivery in ${b.eta}</span></span>${I.chev}</div>`;
   const more = k==="gm"
-    ? `<div class="sec"><div class="sec-h"><h2>Recipes from General Mills</h2></div><div class="row">${RECIPES.map((r,i)=>`<button class="rtile" onclick="go('#/recipe/${i}')"><div class="im" style="background:${["#fde8ef","#fff3d9","#f9e6d6"][i]}"><img src="${b.variants[i].img}" alt=""></div><b>${esc(r.title)}</b><span>${r.time} · Serves ${r.serves}</span></button>`).join("")}</div></div>`
-    : `<div class="sec"><div class="sec-h"><h2>Goes great with</h2></div><div class="row">${(k==="bk"?["rings","ketchup","milk-choc"]:["mozz","sauce","milk-choc"]).map(id=>tile(id)).join("")}</div></div>`;
+    ? `<div class="sec"><div class="sec-h"><h2>Recipes from General Mills</h2></div><div class="row">${RECIPES.map((r,i)=>`<button class="rtile" onclick="go('#/recipe/${i}')"><div class="im" style="background:${["#fde8ef","#fff3d9","#f9e6d6"][i]}"><img src="${b.variants[i].img}" alt="" referrerpolicy="no-referrer"></div><b>${esc(r.title)}</b><span>${r.time} · ${r.yield}</span></button>`).join("")}</div></div>
+       <div class="sec"><div class="sec-h"><h2>Family size</h2></div>${row(GROUPS.gm)}</div>`
+    : k==="dor"
+    ? `<div class="sec"><div class="sec-h"><h2>Party size</h2></div>${row(["dor-cr-party","dor-nc-party","dor-nkd"])}</div><div class="sec"><div class="sec-h"><h2>Goes well with</h2></div>${row(GROUPS.dips)}</div>`
+    : `<div class="sec"><div class="sec-h"><h2>More pints</h2></div>${row(GROUPS.bj)}</div><div class="sec"><div class="sec-h"><h2>Make it a sundae</h2></div>${row(GROUPS.toppings)}</div>`;
   return `<div class="screen" data-name="page">
     <div class="pad-top"></div>
-    <div class="pp-hdr"><button class="iconbtn" onclick="back()" aria-label="Back">${I.back}</button><span class="ttl" style="display:flex;align-items:center;gap:8px">${bdg(k,"sm")}${b.name}</span>${cartChip()}</div>
+    <div class="pp-hdr"><button class="iconbtn" onclick="back()" aria-label="Back">${I.back}</button><span class="ttl">${bdg(k,"sm")}${esc(b.name)}</span>${cartChip()}</div>
     <div class="scr" id="scr">
       <div class="hero"><div class="flickbox pulse-in" data-anchor="pg">${flick("pg", k)}</div></div>
-      ${strip}
+      <div class="pg-strip"><img class="slogo" src="${SAFEWAY_LOGO}" alt="" referrerpolicy="no-referrer"><span class="t"><b>Shopping at Safeway</b><span>${I.bolt}Delivery or pickup</span></span>${I.chev}</div>
       <div class="sec"><div class="sec-h"><h2>Our best sellers</h2><span class="spon">${b.variants.length} items</span></div>
-        <div class="row">${b.variants.map((v,i)=>`<div class="btile ${i?"":"on"}" data-sync="pg" data-i="${i}" onclick="pickOrOpen('pg',${i})"><div class="im"><img src="${v.img}" alt="">${addCtl(`${k}-${i}`)}</div>${priceHTML(v.p)}<div class="pname">${esc(v.n)}</div><div class="psize">${esc(v.s)}</div></div>`).join("")}</div>
+        <div class="row">${b.variants.map((v,i)=>`<div class="btile ${i?"":"on"}" data-sync="pg" data-i="${i}" onclick="pickOrOpen('pg',${i})"><div class="im"><img src="${v.img}" alt="" referrerpolicy="no-referrer">${addCtl(`${k}-${i}`)}</div>${priceHTML(v.p, v.was)}<div class="pname">${esc(v.n)}</div><div class="psize">${esc(v.s)}</div></div>`).join("")}</div>
       </div>
       ${more}
-
-      <div style="height:40px"></div>
+      ${FOOT}<div style="height:40px"></div>
     </div>
   </div>`;
 }
@@ -1253,7 +1206,6 @@ function render(anim=true){
   if(anim && lastHash) scr.classList.add(dir);
   lastHash = h;
   if(r.name === "recipe") fillRecipe(Math.max(0,Math.min(2,+r.a||0)));
-  if(r.name === "product" && r.a !== "gm" && BRANDS[r.a]) rtotal();
   Object.values(SLOTS).forEach(sl=>{ if(sl.v) applyVariant(sl.id, sl.v); });
   document.getElementById("sbar").classList.toggle("light", r.name === "home");
   const pill = document.getElementById("cartpill");
@@ -1272,11 +1224,11 @@ window.addEventListener("hashchange", ()=>render(true));
 
 /* ================= ad format picker ================= */
 const GUIDE = [
-  ["Sponsored products", [["Home: Breakfast picks","#/home","sp","gm"],["Search results: cereal","#/search/cereal","sp","gm"]]],
-  ["Shoppable video", [["Search: burger","#/search/burger","sv","bk"],["Search: pizza","#/search/pizza","sv","lc"]]],
-  ["Shoppable display", [["Search: cereal","#/search/cereal","sd","gm"]]],
-  ["Recipe ads", [["Search: milk","#/search/milk","rc","gm"],["Home: Recipes for you","#/home","rc","gm"]]],
-  ["Brand pages", [["General Mills","#/page/gm","pg","gm"],["Burger King","#/page/bk","pg","bk"],["Little Caesars","#/page/lc","pg","lc"]]]
+  ["Sponsored products", [["Home: Breakfast picks","#/home","sp","gm"],["Home: Snack time","#/home","sp2","dor"],["Search: cereal","#/search/cereal","sp","gm"]]],
+  ["Shoppable video", [["Search: ice cream","#/search/ice%20cream","sv","bj"]]],
+  ["Shoppable display", [["Search: chips","#/search/chips","sd","dor"]]],
+  ["Recipe ads", [["Search: breakfast","#/search/breakfast","rc","gm"],["Home: Recipes for you","#/home","rc","gm"]]],
+  ["Brand pages", [["General Mills","#/page/gm","pg","gm"],["Doritos","#/page/dor","pg","dor"],["Ben & Jerry's","#/page/bj","pg","bj"]]]
 ];
 let lastAnchor = "";
 function buildPicker(){
