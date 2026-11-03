@@ -21,53 +21,33 @@ svg{display:block}
 input{font:inherit;color:inherit}
 
 /* ================= page layout ================= */
-.page{display:grid;grid-template-columns:minmax(330px,420px) 1fr;min-height:100vh}
-.guide{padding:36px 28px 28px 40px;display:flex;flex-direction:column;gap:22px;overflow-y:auto;max-height:100vh;position:sticky;top:0}
+.page{min-height:100vh}
 .stagewrap{display:grid;place-items:center;padding:24px;min-height:100vh;position:relative}
-.stagewrap::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 55% at 55% 45%,#fff7ec 0%,rgba(250,241,229,0) 70%);pointer-events:none}
+.stagewrap::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 55% at 50% 45%,#fff7ec 0%,rgba(250,241,229,0) 70%);pointer-events:none}
 .phone-slot{position:relative}
 .phone{position:absolute;left:0;top:0;width:414px;height:868px;padding:12px;border-radius:58px;background:#101312;box-shadow:0 0 0 2px #2b2f2e inset,0 40px 80px -30px rgba(0,61,41,.45),0 18px 36px -18px rgba(0,0,0,.35);transform-origin:0 0}
 .phone::after{content:"";position:absolute;top:24px;left:50%;width:120px;height:34px;margin-left:-60px;border-radius:20px;background:#000;z-index:60;pointer-events:none}
 
-/* guide */
-.glogo{display:flex;align-items:center;gap:10px}
-.glogo .wm{font-weight:800;font-size:22px;letter-spacing:-.5px;color:var(--kale)}
-.glogo .wm em{font-style:normal;color:var(--green)}
-.glogo .x{color:var(--ink-3);font-weight:600;margin:0 2px}
-.glogo .flam{font-weight:800;font-size:22px;letter-spacing:-.4px;color:var(--ink)}
-.gintro h1{margin:0 0 8px;font-size:30px;line-height:1.08;letter-spacing:-.8px;color:var(--kale);font-weight:800}
-.gintro p{margin:0;color:#4a4d52;font-size:14.5px;line-height:1.5}
-.gsec-h{font-size:11.5px;letter-spacing:.9px;text-transform:uppercase;color:var(--ink-2);font-weight:700;margin:0 0 10px}
-.fmt{background:#fff;border-radius:18px;padding:16px 16px 14px;border:1.5px solid transparent;box-shadow:0 1px 0 rgba(0,61,41,.06),0 8px 20px -14px rgba(0,61,41,.25);transition:border-color .2s,box-shadow .2s;margin-bottom:10px}
-.fmt.on{border-color:var(--green);box-shadow:0 0 0 4px rgba(16,137,16,.10),0 8px 20px -14px rgba(0,61,41,.25)}
-.fmt-top{display:flex;align-items:center;gap:10px;margin-bottom:6px}
-.fmt-n{width:24px;height:24px;border-radius:50%;background:var(--kale);color:#fff;font-weight:800;font-size:12px;display:grid;place-items:center;flex:none}
-.fmt.on .fmt-n{background:var(--green)}
-.fmt h3{margin:0;font-size:16px;letter-spacing:-.2px;color:var(--ink)}
-.fmt .brands{margin-left:auto;display:flex;gap:4px}
-.fmt p{margin:0 0 10px;color:#55595f;font-size:13.5px;line-height:1.45}
-.fmt-links{display:flex;flex-wrap:wrap;gap:6px}
-.fmt-links button{font-size:12.5px;font-weight:600;padding:6px 11px;border-radius:999px;background:var(--chip);color:var(--kale);transition:background .15s}
-.fmt-links button:hover{background:#e9f3ea}
-.fmt-links button.cur{background:var(--kale);color:#fff}
-.sig{background:var(--kale);color:#eaf3ee;border-radius:18px;padding:16px}
-.sig-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:4px}
-.sig-h b{font-size:15px;color:#fff}
-.sig-h span{font-size:12px;color:#9fc5b3}
-.sig p{margin:0 0 12px;font-size:12.5px;color:#b9d6c8;line-height:1.45}
-.sig-empty{font-size:12.5px;color:#9fc5b3;padding:10px 0 2px;border-top:1px solid rgba(255,255,255,.12)}
-.sig-b{padding:10px 0 4px;border-top:1px solid rgba(255,255,255,.12)}
-.sig-b-h{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:#fff;margin-bottom:6px}
-.sig-r{display:grid;grid-template-columns:118px 1fr 64px;gap:8px;align-items:center;font-size:12px;margin:5px 0}
-.sig-r .nm{color:#dbe9e2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sig-r .bar{height:8px;border-radius:5px;background:rgba(255,255,255,.12);overflow:hidden}
-.sig-r .bar i{display:block;height:100%;background:linear-gradient(90deg,#3fbf5a,#8ee07a);border-radius:5px;transition:width .4s}
-.sig-r .ct{color:#9fc5b3;text-align:right;font-variant-numeric:tabular-nums}
-.gfoot{font-size:11.5px;color:var(--ink-3);line-height:1.5;margin-top:auto}
-.gclose{display:none}
-
-/* mobile top bar */
-.mbar{display:none}
+/* ad format picker: floating pill + compact list */
+.gpill{position:fixed;right:24px;bottom:24px;z-index:90;display:flex;align-items:center;gap:8px;height:44px;padding:0 14px 0 16px;border-radius:999px;background:var(--kale);color:#fff;font-weight:700;font-size:14px;box-shadow:0 10px 28px -8px rgba(0,61,41,.6)}
+.gpill:hover{background:var(--kale-2)}
+.gpill i{font-style:normal;background:#fff;color:var(--kale);border-radius:999px;font-size:11.5px;font-weight:800;min-width:22px;height:22px;display:grid;place-items:center;padding:0 6px}
+.gscrim{position:fixed;inset:0;z-index:89;display:none}
+.gscrim.on{display:block}
+.gpanel{position:fixed;right:24px;bottom:78px;z-index:91;width:292px;max-height:min(72vh,600px);overflow-y:auto;background:#fff;border-radius:18px;box-shadow:0 0 0 1px rgba(0,0,0,.06),0 22px 50px -12px rgba(0,0,0,.35);padding:6px 6px 8px;display:none;scrollbar-width:thin}
+.gpanel.on{display:block;animation:pop .18s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.gpanel .grab{display:none}
+.gpanel h6{margin:12px 10px 4px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.gitem{display:flex;gap:10px;align-items:center;width:100%;text-align:left;height:38px;padding:0 10px;border-radius:10px;font-size:13.5px;color:var(--ink)}
+.gitem:hover{background:var(--chip)}
+.gitem.cur{background:var(--green-t);color:var(--kale);font-weight:700}
+.gitem .n{width:18px;flex:none;color:var(--ink-3);font-size:12px;font-variant-numeric:tabular-nums}
+.gitem.cur .n{color:var(--green)}
+.gitem .bdg{margin-left:auto}
+.pulse{animation:pulse 2.4s ease-out 1;outline:3px solid transparent;outline-offset:3px}
+.pulse.in{outline-offset:-3px}
+@keyframes pulse{12%{outline-color:#ff7009}70%{outline-color:#ff7009}100%{outline-color:rgba(255,112,9,0)}}
 
 /* ================= app shell ================= */
 #app{position:relative;width:390px;height:844px;border-radius:46px;overflow:hidden;background:#fff;isolation:isolate}
@@ -106,7 +86,7 @@ input{font:inherit;color:inherit}
 .sec-h h2{margin:0;font-size:19px;letter-spacing:-.4px;font-weight:750}
 .sec-h a,.sec-h button{font-size:13.5px;color:var(--green);font-weight:600}
 .sec-sub{padding:0 16px;margin:-8px 0 12px;font-size:12.5px;color:var(--ink-2)}
-.row{display:flex;gap:12px;overflow-x:auto;padding:0 16px 6px;scroll-padding:0 16px;scroll-snap-type:x mandatory;scrollbar-width:none}
+.row{display:flex;gap:12px;overflow-x:auto;padding:4px 16px 6px;scroll-padding:0 16px;scroll-snap-type:x mandatory;scrollbar-width:none}
 .row::-webkit-scrollbar{display:none}
 .row > *{scroll-snap-align:start;flex:none}
 
@@ -290,7 +270,7 @@ input{font:inherit;color:inherit}
 /* recipe page */
 .rp-hdr,.pp-hdr{display:flex;align-items:center;justify-content:space-between;padding:0 8px 6px;flex:none;background:#fff}
 .rp-hdr .r{display:flex;gap:2px;align-items:center}
-.rp-hdr .ttl,.pp-hdr .ttl{font-weight:700;font-size:15px}
+.rp-hdr .ttl,.pp-hdr .ttl{font-weight:700;font-size:15px;display:flex;align-items:center;gap:7px}
 .hero{margin:0}
 .hero .flickbox{border-radius:0}
 .rp-body{padding:16px 16px 120px}
@@ -336,6 +316,65 @@ input{font:inherit;color:inherit}
 .about{margin-top:20px;padding-top:16px;border-top:1px solid var(--line-2)}
 .about h2{font-size:16px;margin:0 0 6px}
 .about p{margin:0;font-size:13.5px;line-height:1.5;color:#55595f}
+
+/* product pages */
+.pdots{display:flex;justify-content:center;gap:6px;padding:12px 0 0}
+.pdots i{width:6px;height:6px;border-radius:3px;background:#d5d8db;transition:all .2s}
+.pdots i.on{width:18px;background:var(--kale)}
+.pd-art{aspect-ratio:1/1;background:var(--img);display:grid;place-items:center}
+.pd-art svg,.pd-art img{width:62%;height:62%;object-fit:contain}
+.pd{padding:10px 16px 130px}
+.pd-brand{color:var(--green);font-weight:700;font-size:14px;display:inline-flex;align-items:center;gap:2px}
+.pd-brand svg{transform:rotate(-90deg)}
+.pd h1{font-size:22px;margin:4px 0 4px;line-height:1.22;letter-spacing:-.5px}
+.pd-size{font-size:13.5px;color:var(--ink-2)}
+.pd-pr{display:flex;align-items:center;gap:12px;margin:12px 0 2px}
+.pd-pr .price{font-size:28px;margin:0}
+.pd-pr .price sup{font-size:15px;margin-top:3px}
+.stock{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700;color:var(--green);background:var(--green-t);padding:5px 10px;border-radius:999px}
+.stock svg path{stroke:var(--green)}
+.pd-opt{margin:20px 0 4px}
+.pd-opt h3{font-size:15px;margin:0 0 10px}
+.pd-opt h3 span{font-weight:500;color:var(--ink-2)}
+.ochips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px 2px}
+.ochip{flex:none;display:flex;align-items:center;gap:8px;padding:5px 14px 5px 5px;border-radius:999px;border:1.5px solid var(--line);font-size:13px;font-weight:600;background:#fff;transition:all .15s}
+.ochip img{width:32px;height:32px;border-radius:50%;object-fit:contain;background:var(--img)}
+.ochip.on{border-color:var(--kale);background:#eef6f1;color:var(--kale)}
+.pd-card{display:flex;align-items:center;gap:12px;margin:18px 0 0;padding:12px 14px;border-radius:14px;background:var(--chip)}
+.pd-card .t{flex:1}
+.pd-card b{display:block;font-size:13.5px}
+.pd-card span{font-size:12px;color:var(--ink-2)}
+.pd-sec{border-top:1px solid var(--line-2);margin-top:22px;padding-top:16px}
+.pd-sec h2{font-size:17px;margin:0 0 8px;letter-spacing:-.3px}
+.pd-sec p{margin:0;font-size:14px;line-height:1.55;color:#4a4d52}
+.pd-dl{display:grid;grid-template-columns:104px 1fr;gap:9px 12px;font-size:13.5px;margin:0}
+.pd-dl dt{color:var(--ink-2)}
+.pd-dl dd{margin:0}
+.pd .row{margin:0 -16px}
+.pd .sec{padding-top:22px}
+.pd .sec-h{padding:0}
+.pd-bar{position:absolute;left:0;right:0;bottom:0;padding:10px 16px 28px;background:#fff;border-top:1px solid var(--line);display:flex;gap:10px;align-items:center;z-index:6}
+.pd-bar .addc.wide{flex:1;height:52px}
+.pd-bar .addc.wide .plus{width:52px;height:52px}
+.pd-bar .addc.wide .lbl{font-size:16px}
+.og{margin-top:22px;border-top:1px solid var(--line-2);padding-top:16px}
+.og-h{display:flex;justify-content:space-between;align-items:center}
+.og-h h3{font-size:16px;margin:0}
+.req{font-size:11px;font-weight:700;background:var(--chip);color:var(--ink-2);padding:3px 8px;border-radius:6px}
+.req.ok{background:var(--green-t);color:var(--green)}
+.og-sub{font-size:12.5px;color:var(--ink-2);margin:3px 0 6px}
+.radio{display:flex;align-items:center;gap:12px;padding:13px 0;width:100%;text-align:left;border-bottom:1px solid var(--line-2);font-size:14.5px}
+.radio .r{width:22px;height:22px;border-radius:50%;border:2px solid #c8cbcf;display:grid;place-items:center;flex:none}
+.radio.on .r{border-color:var(--kale)}
+.radio.on .r::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--kale)}
+.radio .pr{margin-left:auto;color:var(--ink-2);font-size:13.5px}
+.note{display:block;width:100%;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;font-size:14px;min-height:66px;resize:none;outline:none;margin-top:8px}
+.note:focus{border-color:var(--kale)}
+.qstep{display:flex;align-items:center;height:52px;border-radius:999px;border:1.5px solid var(--line);flex:none}
+.qstep button{width:44px;height:48px;display:grid;place-items:center}
+.qstep b{min-width:18px;text-align:center;font-size:15px}
+.rbtn{flex:1;height:52px;justify-content:space-between;padding:0 20px;font-size:16px}
+.rbtn.done{background:var(--kale)}
 
 /* bottom nav */
 .bnav{flex:none;display:flex;justify-content:space-around;align-items:flex-start;height:82px;padding-top:9px;border-top:1px solid var(--line);background:#fff}
@@ -396,41 +435,20 @@ input{font:inherit;color:inherit}
   .phone-slot{width:100% !important;height:auto !important}
   .phone{position:relative;width:auto;height:auto;padding:0;border-radius:0;background:none;box-shadow:none;transform:none !important}
   .phone::after{display:none}
-  #app{width:100vw;height:calc(100dvh - 44px);border-radius:0}
+  #app{width:100vw;height:100dvh;border-radius:0}
   .sbar{display:none}
   .pad-top{height:8px}
   .store{padding-top:6px}
-  .mbar{display:flex;align-items:center;justify-content:space-between;height:44px;padding:0 12px 0 14px;background:var(--kale);color:#fff;font-size:13px;font-weight:600}
-  .mbar button{height:30px;padding:0 12px;border-radius:999px;background:rgba(255,255,255,.14);font-size:12.5px;font-weight:700;color:#fff}
-  .guide{position:fixed;inset:0;z-index:100;background:var(--cashew);max-height:none;padding:22px 18px 30px;transform:translateY(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
-  .guide.open{transform:none}
-  .gclose{display:grid;position:absolute;right:14px;top:14px;width:36px;height:36px;border-radius:50%;background:#fff;place-items:center}
+  .gpill{right:12px;bottom:calc(150px + env(safe-area-inset-bottom));height:38px;padding:0 10px 0 13px;font-size:13px}
+  .gscrim.on{background:rgba(0,0,0,.45)}
+  .gpanel{left:0;right:0;bottom:0;width:auto;max-height:62vh;border-radius:20px 20px 0 0;padding:8px 8px calc(14px + env(safe-area-inset-bottom))}
+  .gpanel .grab{display:block;width:38px;height:5px;border-radius:3px;background:#dcdee1;margin:2px auto 6px}
+  .gitem{height:44px;font-size:14.5px}
 }
 </style>
 </head>
 <body>
-<div class="mbar"><span>Flicks on Instacart Ads · concept</span><button onclick="openGuide()">Ad formats</button></div>
 <div class="page">
-  <aside class="guide" id="guide">
-    <button class="gclose" onclick="closeGuide()" aria-label="Close">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-    </button>
-    <div class="glogo">
-      <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 30c-2-6-6.5-12-6.5-16.5a6.5 6.5 0 0113 0C22.5 18 18 24 16 30z" fill="#ff7009"/><path d="M16 9c-1.5-3-4.5-4.5-7-4 1.5 2.5 4 4 7 4zm0 0c1.5-3 4.5-4.5 7-4-1.5 2.5-4 4-7 4zm0 0V3" fill="#0aad0a" stroke="#0aad0a" stroke-width="1.6" stroke-linecap="round"/></svg>
-      <span class="wm">instacart <em>ads</em></span><span class="x">×</span><span class="flam">Flam</span>
-    </div>
-    <div class="gintro">
-      <h1>Flicks inside every Instacart ad.</h1>
-      <p>Shoppers switch between products inside the ad itself, then add the one they picked. Here are Instacart's ad formats, each running a live Flick.</p>
-    </div>
-    <div>
-      <div class="gsec-h">Ad formats</div>
-      <div id="fmts"></div>
-    </div>
-    <div class="sig" id="signals"></div>
-    <div class="gfoot">Concept prototype by Flam for partner conversations. Products, prices and stores are illustrative. Not affiliated with or endorsed by Instacart, Burger King, Little Caesars or General Mills.</div>
-  </aside>
-
   <main class="stagewrap">
     <div class="phone-slot" id="phoneSlot">
       <div class="phone" id="phone">
@@ -456,6 +474,9 @@ input{font:inherit;color:inherit}
     </div>
   </main>
 </div>
+<button class="gpill" id="gpill" onclick="togglePicker()" aria-expanded="false">Ad formats <i id="gcount"></i></button>
+<div class="gscrim" id="gscrim" onclick="togglePicker(false)"></div>
+<div class="gpanel" id="gpanel" role="dialog" aria-label="Ad formats in this demo"></div>
 
 <script>
 /* ================= brands and Flick tags ================= */
@@ -500,7 +521,8 @@ function tagDoc(slotId, b){
   const bridge = `(function(){var S=${JSON.stringify(slotId)};function t(m){m.flam=1;m.slot=S;try{parent.postMessage(m,"*")}catch(e){}}
 window.__vxOpen=function(u){t({type:"cta",url:u||""});return true};
 window.ExitApi={exit:function(n,u){t({type:"cta",url:u||""})}};
-document.addEventListener("click",function(e){var a=e.target&&e.target.closest&&e.target.closest("a[target=_blank]");if(a){e.preventDefault();t({type:"cta",url:a.href})}},true);
+document.addEventListener("click",function(e){var a=e.target&&e.target.closest&&e.target.closest("a[target=_blank]");if(a){e.preventDefault();t({type:"cta",url:a.href});return}
+var p=e.composedPath?e.composedPath():[],inP=false;for(var i=0;i<p.length;i++){var n=p[i];if(!n||!n.tagName)continue;var g=n.tagName;if(g==="BUTTON"||g==="A"||g==="INPUT"||g==="SELECT"||(n.getAttribute&&n.getAttribute("role")==="button"))return;if(g==="VERTEX-PLAYER"){inP=true;break}}if(inP)t({type:"tap"})},true);
 function hook(v){if(v.__flam)return;v.__flam=1;
 v.addEventListener("vertex-ready",function(){t({type:"ready"})});
 v.addEventListener("vertex-error",function(e){var d=e.detail||{};t({type:"error",msg:(d.message||d.code||"render error")+""})});
@@ -585,6 +607,22 @@ prod("brioche",     {n:"Brioche Loaf", s:"16 oz", p:4.99, art:["loaf","#d48a2c",
 prod("maple",       {n:"Pure Maple Syrup", s:"12.5 fl oz", p:8.49, art:["bottle","#a35a14","#3d2208","MAPLE"]});
 prod("bananas",     {n:"Bananas", s:"About 2.4 lb", p:1.49, art:["bag","#f5d547","#6b8f2a",""]});
 
+const DESC = {
+  "gm-0":"Frosted toasted oat cereal with colorful marshmallow shapes. A breakfast classic from General Mills.",
+  "gm-1":"Whole grain oat cereal sweetened with real honey. Crunchy with cold milk or on its own as a snack.",
+  "gm-2":"Crispy wheat and rice squares coated in cinnamon and sugar. Great with milk, in a trail mix or crushed over yogurt.",
+  "bk-0":"Two flame-grilled beef patties with melted American cheese, crispy onion rings and smoky BBQ sauce on a sesame bun.",
+  "bk-1":"Flame-grilled beef with bacon, melted cheese, pickles and crispy onions on a soft pretzel bun.",
+  "bk-2":"Two flame-grilled beef patties with American cheese, lettuce, tomato, pickles, onions, ketchup and mayo on a sesame bun.",
+  "lc-0":"Large pizza with pepperoni and mozzarella on a classic crust. 8 slices.",
+  "lc-1":"Large pizza with mozzarella and tomato sauce on a classic crust. 8 slices.",
+  "lc-2":"Large pizza with green peppers, black olives, mozzarella and tomato sauce on a classic crust. 8 slices."
+};
+const AISLE = {cereal:"Breakfast > Cereal", milk:"Dairy & eggs > Milk", burger:"Meat & seafood", pizza:"Frozen > Pizza", recipe:"Pantry"};
+const ADDON = {bk:{h:"Make it a meal", sub:"Choose 1", none:"Burger only", pid:"bk-meal", label:"Meal with medium fries and drink"},
+               lc:{h:"Add a side", sub:"Choose 1", none:"No side", pid:"lc-bread", label:"Garlic bread"}};
+prod("bk-meal",  {n:"Meal upgrade: medium fries and drink", s:"Burger King", p:3.99, store:"Burger King", art:["bag","#d62300","#f5ebdc","FRIES"]});
+prod("lc-bread", {n:"Garlic bread side", s:"Little Caesars", p:3.49, store:"Little Caesars", art:["bag","#f47b20","#fff3e0","BREAD"]});
 const RECIPES = [
   { title:"Lucky Charms Marshmallow Treats", time:"20 min", serves:12,
     ings:[["gm-0","5 cups"],["marsh","10 oz bag"],["butter","3 tbsp"],["vanilla","1 tsp"]],
@@ -668,7 +706,7 @@ function addToCart(pid, n=1, silent=false){
   CART[pid] = qty(pid) + n;
   if(CART[pid] <= 0) delete CART[pid];
   if(n>0){
-    const x=P[pid]; if(x.brand) { SIG[x.brand].adds[x.vi]++; renderSignals(); }
+    const x=P[pid];
     if(!silent) toast(`Added ${x.n}`, pid);
     [document.getElementById("cartpill"),...document.querySelectorAll(".cartchip")].forEach(el=>{ el.classList.remove("bump"); void el.offsetWidth; el.classList.add("bump"); });
   }
@@ -711,27 +749,13 @@ function toast(t, pid){
   el.classList.add("on"); clearTimeout(toastT); toastT=setTimeout(()=>el.classList.remove("on"),2200);
 }
 
-/* ================= signals (guide panel) ================= */
-const SIG = {}; Object.keys(BRANDS).forEach(k=>SIG[k]={picks:[0,0,0],adds:[0,0,0]});
-function renderSignals(){
-  const any = Object.values(SIG).some(s=>s.picks.some(Boolean)||s.adds.some(Boolean));
-  const total = Object.values(SIG).reduce((a,s)=>a+s.picks.reduce((x,y)=>x+y,0),0);
-  let html = `<div class="sig-h"><b>Choice signals</b><span>${total} switch${total===1?"":"es"} this session</span></div>
-  <p>Every switch inside a Flick is a stated preference, captured before the shopper adds to cart. Instacart sees it in aggregate.</p>`;
-  if(!any) html += `<div class="sig-empty">Nothing yet. Tap an option inside any Flick.</div>`;
-  else Object.entries(SIG).forEach(([k,s])=>{
-    if(!s.picks.some(Boolean) && !s.adds.some(Boolean)) return;
-    const max = Math.max(1,...s.picks);
-    html += `<div class="sig-b"><div class="sig-b-h">${bdg(k,"xs")}${BRANDS[k].name}</div>${BRANDS[k].variants.map((v,i)=>`
-      <div class="sig-r"><span class="nm">${esc(v.short)}</span><span class="bar"><i style="width:${s.picks[i]/max*100}%"></i></span><span class="ct">${s.picks[i]} pick${s.picks[i]===1?"":"s"}${s.adds[i]?` · ${s.adds[i]} add`:""}</span></div>`).join("")}</div>`;
-  });
-  document.getElementById("signals").innerHTML = html;
-}
-
 /* ================= Flick slots ================= */
 let SLOTS = {};
+const VMEM = {}, SCROLL = {}; let CURH = "#/home";
 function flick(id, brand, opt={}){
-  SLOTS[id] = { id, brand, v:opt.v||0, want:opt.v||0, ready:false, error:false, mounted:false, on:opt.on||null, cta:opt.cta||"add", lastCta:0, prog:0, timer:null };
+  // Coming back to a screen restores the option the shopper last picked in each Flick.
+  const v = opt.v != null ? opt.v : (VMEM[CURH+"|"+id] || 0);
+  SLOTS[id] = { id, brand, v, want:v, ready:false, error:false, mounted:false, on:opt.on||null, cta:opt.cta||"product", lastCta:0, prog:0, timer:null };
   return `<div class="flick" data-slot="${id}"><div class="fstate load"></div></div>`;
 }
 let io=null;
@@ -785,7 +809,7 @@ function setVariant(id, i){
 function applyVariant(id, i){
   const s = SLOTS[id]; if(!s) return;
   const changed = s.v !== i;
-  s.v = i;
+  s.v = i; VMEM[CURH+"|"+id] = i;
   document.querySelectorAll(`[data-sync="${id}"]`).forEach(el=>el.classList.toggle("on", +el.dataset.i===i));
   if(s.on) s.on(i, changed);
 }
@@ -806,13 +830,13 @@ window.addEventListener("message", e=>{
     const n = BRANDS[s.brand].variants.length;
     const d = Math.max(0, Math.min(m.diff, n-1));
     if(m.initial && s.want !== 0) return; // keep the option we're about to restore
-    if(!m.initial && Date.now()-s.prog > 700 && d !== s.v){ SIG[s.brand].picks[d]++; renderSignals(); }
     applyVariant(m.slot, d);
-  } else if(m.type==="cta"){
+  } else if(m.type==="cta" || m.type==="tap"){
+    // Any click-through on a Flick ad opens the product page for the option on screen.
+    // On the product page itself, the Flick's button adds to cart and a tap does nothing.
     const now = Date.now(); if(now - s.lastCta < 900) return; s.lastCta = now;
-    if(s.cta==="recipe") go(`#/recipe/${s.v}`);
-    else if(s.cta==="product") go(`#/product/${s.brand}/${s.v}`);
-    else addToCart(`${s.brand}-${s.v}`);
+    if(s.cta==="add"){ if(m.type==="cta") addToCart(`${s.brand}-${s.v}`); }
+    else go(`#/product/${s.brand}/${s.v}`);
   }
 });
 
@@ -821,8 +845,8 @@ window.addEventListener("message", e=>{
 function sponsoredTile(id, k){
   const b = BRANDS[k], v = b.variants[0];
   return `<div class="htile">
-    <div class="flickbox">${flick(id, k, {cta:"add", on:i=>syncProduct(id,k,i)})}</div>
-    <div class="info"><div class="meta">
+    <div class="flickbox" data-anchor="sp">${flick(id, k, {on:i=>syncProduct(id,k,i)})}</div>
+    <div class="info"><div class="meta" onclick="go('#/product/${k}/'+SLOTS['${id}'].v)" style="cursor:pointer">
       <div data-b="${id}" data-f="price">${priceHTML(v.p)}</div>
       <div class="pname" data-b="${id}" data-f="name" style="-webkit-line-clamp:1">${esc(v.n)}</div>
       <div class="psize"><span data-b="${id}" data-f="size">${v.s}</span> · <span class="spon">Sponsored</span></div>
@@ -832,8 +856,8 @@ function sponsoredTile(id, k){
 // 1b. Sponsored product: search results, first position
 function sponsoredCard(id, k){
   const b = BRANDS[k], v = b.variants[0];
-  return `<section class="spcard" aria-label="Sponsored product">
-    <div class="flickbox">${flick(id, k, {cta:"add", on:i=>syncProduct(id,k,i)})}</div>
+  return `<section class="spcard" data-anchor="sp" aria-label="Sponsored product">
+    <div class="flickbox">${flick(id, k, {on:i=>syncProduct(id,k,i)})}</div>
     <div class="spinfo"><div class="meta" onclick="go('#/product/${k}/'+SLOTS['${id}'].v)" style="cursor:pointer">
       <div data-b="${id}" data-f="price">${priceHTML(v.p)}</div>
       <div class="pname" data-b="${id}" data-f="name" style="font-weight:600">${esc(v.n)}</div>
@@ -860,11 +884,11 @@ function syncProduct(id, k, i){
 const HEAD = { bk:"Your burger, your call", lc:"Pick tonight's pizza", gm:"Breakfast, three ways" };
 function shoppableUnit(id, k, kind){
   const b = BRANDS[k];
-  return `<section class="shop" aria-label="Sponsored ${kind}">
+  return `<section class="shop" data-anchor="${kind==="shoppable video"?"sv":"sd"}" aria-label="Sponsored ${kind}">
     <button class="shop-h" onclick="go('#/page/${k}')">${bdg(k)}<span class="t"><b>${HEAD[k]}</b><span>Sponsored · ${b.name}</span></span><span class="go">${I.arrow}</span></button>
-    <div class="flickbox">${flick(id, k, {cta:"add"})}</div>
+    <div class="flickbox">${flick(id, k)}</div>
     <div class="svprods">${b.variants.map((v,i)=>`
-      <div class="svp ${i?"":"on"}" data-sync="${id}" data-i="${i}" role="button" tabindex="0" onclick="setVariant('${id}',${i})">
+      <div class="svp ${i?"":"on"}" data-sync="${id}" data-i="${i}" role="button" tabindex="0" onclick="pickOrOpen('${id}',${i})">
         <div class="im"><img src="${v.img}" alt="" decoding="async">${addCtl(`${k}-${i}`,"sm")}<span class="now">Showing</span></div>
         ${priceHTML(v.p)}
         <div class="pname">${esc(v.short)}</div>
@@ -876,9 +900,9 @@ function shoppableUnit(id, k, kind){
 // 3. Recipe ad
 function recipeAd(id){
   const r = RECIPES[0];
-  return `<section class="rcard" aria-label="Sponsored recipe">
+  return `<section class="rcard" data-anchor="rc" aria-label="Sponsored recipe">
     <div class="rhead"><b>Related recipe</b><span class="spon">Sponsored</span></div>
-    <div class="flickbox">${flick(id, "gm", {cta:"recipe", on:i=>syncRecipeAd(id,i)})}</div>
+    <div class="flickbox">${flick(id, "gm", {on:i=>syncRecipeAd(id,i)})}</div>
     <div class="rtitle">${bdg("gm")}<div class="t"><h3 data-r="${id}" data-f="title">${esc(r.title)}</h3><div class="rmeta" data-r="${id}" data-f="meta">${recipeMeta(r)}</div></div><button class="iconbtn" onclick="toast('Saved to your recipes')" aria-label="Save recipe">${I.bookmark}</button></div>
     <div class="rings" data-r="${id}" data-f="ings">${recipeRings(r)}</div>
     <button class="btn-g block" onclick="go('#/recipe/'+SLOTS['${id}'].v)">Shop recipe</button>
@@ -897,9 +921,12 @@ function syncRecipeAd(id, i){
   });
 }
 
+function openP(pid){ const x = P[pid]; if(!x) return; go(x.brand ? `#/product/${x.brand}/${x.vi}` : `#/item/${pid}`); }
+// First tap on a product under a Flick switches the Flick to it; tapping the product already on screen opens it.
+function pickOrOpen(id, i){ const s = SLOTS[id]; if(s && s.v === i) go(`#/product/${s.brand}/${i}`); else setVariant(id, i); }
 function tile(pid, opt={}){
   const x = P[pid];
-  return `<div class="tile"><div class="im">${pimg(pid)}${addCtl(pid)}</div>${priceHTML(x.p, x.was)}<div class="pname">${esc(x.n)}</div><div class="psize">${esc(x.s)}</div>${x.was?`<span class="badge">Save ${money(x.was-x.p)}</span>`:""}</div>`;
+  return `<div class="tile" onclick="openP('${pid}')" style="cursor:pointer"><div class="im">${pimg(pid)}${addCtl(pid)}</div>${priceHTML(x.p, x.was)}<div class="pname">${esc(x.n)}</div><div class="psize">${esc(x.s)}</div>${x.was?`<span class="badge">Save ${money(x.was-x.p)}</span>`:""}</div>`;
 }
 function restaurant(k, tint){
   const b = BRANDS[k];
@@ -1012,7 +1039,7 @@ function recipeScreen(i){
     <div class="pad-top"></div>
     <div class="rp-hdr"><button class="iconbtn" onclick="back()" aria-label="Back">${I.back}</button><span class="ttl">Recipe</span><div class="r"><button class="iconbtn" onclick="toast('Saved to your recipes')" aria-label="Save">${I.bookmark}</button>${cartChip()}</div></div>
     <div class="scr" id="scr">
-      <div class="hero"><div class="flickbox">${flick("rp", "gm", {v:i, cta:"add", on:(v,ch)=>{ if(ch) fillRecipe(v); }})}</div></div>
+      <div class="hero"><div class="flickbox">${flick("rp", "gm", {v:i, on:(v,ch)=>{ if(ch) fillRecipe(v); }})}</div></div>
       <div class="rp-body" id="rpbody"></div>
     </div>
     <div class="sticky"><button class="btn-g block" id="rpadd" onclick="addRecipe()"></button></div>
@@ -1046,34 +1073,130 @@ function addRecipe(){
   setTimeout(openCart, 450);
 }
 
+const GROUPS = {
+  cereal:["oat-rings","granola","corn-flakes","choc-puffs","bran","oats"],
+  milk:["milk-2","milk-whole","milk-oat","milk-almond","milk-lf","milk-choc"],
+  burger:["buns","patties","cheese-sl","pickles","ketchup","rings"],
+  pizza:["fz-marg","fz-pep","dough","sauce","mozz","pepperoni"],
+  recipe:["marsh","butter","vanilla","yogurt","mberries","honey","eggs","brioche","maple","bananas"]
+};
+const groupOf = pid => Object.keys(GROUPS).find(g=>GROUPS[g].includes(pid)) || "recipe";
+function unitPrice(x){
+  const m = /^([\d.]+)\s*(fl oz|oz)$/.exec(x.s||""); if(!m) return "";
+  return `$${(x.p/parseFloat(m[1])).toFixed(2)}/${m[2]}`;
+}
+const CHECK = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>`;
+
 function productScreen(k, i){
-  if(!BRANDS[k]) k="gm";
+  if(!BRANDS[k]) k = "gm";
   i = Math.max(0, Math.min(BRANDS[k].variants.length-1, i|0));
-  const b = BRANDS[k], v = b.variants[i];
+  return k === "gm" ? groceryPage(`${k}-${i}`) : restaurantPage(k, i);
+}
+function itemScreen(pid){
+  if(!P[pid]) pid = "milk-2";
+  if(P[pid].brand) return productScreen(P[pid].brand, P[pid].vi);
+  return groceryPage(pid);
+}
+// Grocery item page. For a General Mills product the hero is the Flick and the flavor chips stay in sync with it.
+function groceryPage(pid){
+  const x = P[pid], k = x.brand, b = k ? BRANDS[k] : null;
+  const g = k ? "cereal" : groupOf(pid);
+  const up = unitPrice(x);
+  const hero = k
+    ? `<div class="flickbox">${flick("pp", k, {v:x.vi, cta:"add", on:j=>syncPP(k,j)})}</div><div class="pdots">${b.variants.map((_,j)=>`<i data-sync="pp" data-i="${j}" class="${j===x.vi?"on":""}"></i>`).join("")}</div>`
+    : `<div class="pd-art">${pimg(pid)}</div>`;
+  const brandLine = k
+    ? `<button class="pd-brand" onclick="go('#/page/${k}')">${b.name} ${I.chev}</button>`
+    : `<span class="pd-brand" style="color:var(--ink-2)">Greenleaf Market</span>`;
+  const opts = k ? `<div class="pd-opt"><h3>Flavor: <span data-pp="short">${esc(b.variants[x.vi].short)}</span></h3>
+      <div class="ochips">${b.variants.map((v,j)=>`<button class="ochip ${j===x.vi?"on":""}" data-sync="pp" data-i="${j}" onclick="setVariant('pp',${j})"><img src="${v.img}" alt="">${esc(v.short)}</button>`).join("")}</div></div>` : "";
+  const desc = DESC[pid] || `${x.n}, ${x.s}. Picked fresh and delivered from Greenleaf Market.`;
+  const also = (k ? ["milk-2","bananas","mberries","milk-oat","yogurt"] : GROUPS[g].filter(id=>id!==pid).slice(0,5));
+  const more = k ? b.variants.map((_,j)=>`${k}-${j}`) : GROUPS[g==="milk"?"cereal":"milk"].slice(0,4);
   return `<div class="screen" data-name="product">
     <div class="pad-top"></div>
-    <div class="pp-hdr"><button class="iconbtn" onclick="back()" aria-label="Back">${I.back}</button><span class="ttl">${b.store==="Greenleaf Market"?"Greenleaf Market":b.name}</span>${cartChip()}</div>
+    <div class="pp-hdr"><button class="iconbtn" onclick="back()" aria-label="Back">${I.back}</button><span class="ttl">Greenleaf Market</span><span style="display:flex;align-items:center;gap:2px"><button class="iconbtn" onclick="go('#/search/')" aria-label="Search">${I.search}</button>${cartChip()}</span></div>
     <div class="scr" id="scr">
-      <div class="hero"><div class="flickbox">${flick("pp", k, {v:i, cta:"add", on:j=>syncPP(k,j)})}</div></div>
-      <div class="pp-body">
-        <div class="pp-brand">${b.name} <span class="spon" style="font-weight:500">· Sponsored</span></div>
-        <h1 data-pp="name">${esc(v.n)}</h1>
-        <div class="pp-price"><span data-pp="price">${priceHTML(v.p)}</span><span data-pp="size">${esc(v.s)}</span></div>
-        <div class="opt-h">${b.unit[0].toUpperCase()+b.unit.slice(1)}: <span data-pp="short">${esc(v.short)}</span></div>
-        <div class="opts">${b.variants.map((x,j)=>`<button class="opt ${j===i?"on":""}" data-sync="pp" data-i="${j}" onclick="setVariant('pp',${j})" aria-label="${esc(x.short)}"><div class="im"><img src="${x.img}" alt=""></div></button>`).join("")}</div>
-        <div class="about"><h2>About this item</h2><p>${k==="gm"?"A pantry favorite from General Mills. Switch flavors in the video above or with the options here; Add to cart always adds the flavor you picked.":esc(b.name)+" restaurant item, delivered hot. Switch options in the video above or below."}</p></div>
-        <div class="about"><h2>Often bought with</h2></div>
-        <div class="row" style="padding:0">${(k==="gm"?["milk-2","bananas","mberries","milk-oat"]:["ketchup","rings","milk-choc"]).map(id=>tile(id)).join("")}</div>
+      <div class="hero">${hero}</div>
+      <div class="pd">
+        ${brandLine}
+        <h1 data-pp="name">${esc(x.n)}</h1>
+        <div class="pd-size"><span data-pp="size">${esc(x.s)}</span><span data-pp="unit">${up?` · ${up}`:""}</span></div>
+        <div class="pd-pr"><span data-pp="price">${priceHTML(x.p, x.was)}</span><span class="stock">${CHECK}Many in stock</span></div>
+        ${opts}
+        <div class="pd-card"><span class="bdg sm" style="background:#fff">${I.leaf}</span><span class="t"><b>Delivery by 12:40pm</b><span>Greenleaf Market · In-store prices</span></span></div>
+        <div class="pd-sec"><h2>Details</h2><p data-pp="desc">${esc(desc)}</p></div>
+        <div class="pd-sec"><h2>Product info</h2><dl class="pd-dl"><dt>Brand</dt><dd>${k?b.name:"Greenleaf Market"}</dd><dt>Size</dt><dd data-pp="size2">${esc(x.s)}</dd><dt>Aisle</dt><dd>${AISLE[g]}</dd><dt>Sold by</dt><dd>Greenleaf Market</dd></dl></div>
+        <div class="sec"><div class="sec-h"><h2>Often bought with</h2></div><div class="row">${also.map(id=>tile(id)).join("")}</div></div>
+        <div class="sec"><div class="sec-h"><h2>${k?"More from "+b.name:"You might also like"}</h2></div><div class="row">${more.map(id=>tile(id)).join("")}</div></div>
       </div>
     </div>
-    <div class="sticky">${addCtl(`${k}-${i}`,"wide")}</div>
+    <div class="pd-bar">${addCtl(pid,"wide")}</div>
   </div>`;
 }
 function syncPP(k, j){
-  const v = BRANDS[k].variants[j];
-  const set=(f,h)=>{const el=document.querySelector(`[data-pp="${f}"]`); if(el){ el.innerHTML=h; el.classList.remove("fade-swap"); void el.offsetWidth; el.classList.add("fade-swap"); }};
-  set("name", esc(v.n)); set("price", priceHTML(v.p)); set("size", esc(v.s)); set("short", esc(v.short));
-  const ctl = document.querySelector(".sticky .addc"); if(ctl){ setPid(ctl, `${k}-${j}`); refreshAdds(); }
+  const v = BRANDS[k].variants[j], pid = `${k}-${j}`;
+  if(k !== "gm"){ syncRP(j); return; }
+  const set=(f,h)=>document.querySelectorAll(`[data-pp="${f}"]`).forEach(el=>{ el.innerHTML=h; el.classList.remove("fade-swap"); void el.offsetWidth; el.classList.add("fade-swap"); });
+  const up = unitPrice(P[pid]);
+  set("name", esc(v.n)); set("price", priceHTML(v.p)); set("size", esc(v.s)); set("size2", esc(v.s)); set("unit", up?` · ${up}`:""); set("short", esc(v.short)); set("desc", esc(DESC[pid]||""));
+  const ctl = document.querySelector(".pd-bar .addc"); if(ctl){ setPid(ctl, pid); refreshAdds(); }
+  keepHash(`#/product/${k}/${j}`);
+}
+
+// Restaurant item page (Burger King, Little Caesars): options, quantity and a total that updates.
+// Keep the address in step with the option on screen, so Back returns to it.
+function keepHash(h){ history.replaceState(null, "", h); CURH = lastHash = h; if(NAV.length) NAV[NAV.length-1] = h; }
+let RO = {k:"bk", i:0, q:1, opt:0};
+function restaurantPage(k, i){
+  const b = BRANDS[k], v = b.variants[i], ad = ADDON[k];
+  RO = {k, i, q:1, opt:0};
+  return `<div class="screen" data-name="product">
+    <div class="pad-top"></div>
+    <div class="pp-hdr"><button class="iconbtn" onclick="back()" aria-label="Back">${I.back}</button><button class="ttl" onclick="go('#/page/${k}')">${bdg(k,"sm")}${b.name}</button>${cartChip()}</div>
+    <div class="scr" id="scr">
+      <div class="hero"><div class="flickbox">${flick("pp", k, {v:i, cta:"add", on:j=>syncPP(k,j)})}</div><div class="pdots">${b.variants.map((_,j)=>`<i data-sync="pp" data-i="${j}" class="${j===i?"on":""}"></i>`).join("")}</div></div>
+      <div class="pd">
+        <h1 data-pp="name">${esc(v.n)}</h1>
+        <div class="pd-size"><span data-pp="price-t">${money(v.p)}</span> · ${b.name}</div>
+        <p data-pp="desc" style="margin:10px 0 0;font-size:14px;line-height:1.5;color:#4a4d52">${esc(DESC[`${k}-${i}`])}</p>
+        <div class="pd-card"><span class="bdg sm" style="background:#fff">${I.bolt}</span><span class="t"><b>Delivery in ${b.eta}</b><span>${b.fee} · Hot and fresh from ${b.name}</span></span></div>
+        <div class="og"><div class="og-h"><h3>Choose your ${b.unit}</h3><span class="req ok">Selected</span></div>
+          <div class="ochips" style="margin-top:12px">${b.variants.map((x,j)=>`<button class="ochip ${j===i?"on":""}" data-sync="pp" data-i="${j}" onclick="setVariant('pp',${j})"><img src="${x.img}" alt="">${esc(x.short)}</button>`).join("")}</div></div>
+        <div class="og"><div class="og-h"><h3>${ad.h}</h3><span class="req">Required</span></div><div class="og-sub">${ad.sub}</div>
+          <button class="radio on" data-ro="0" onclick="ropt(0)"><span class="r"></span>${ad.none}</button>
+          <button class="radio" data-ro="1" onclick="ropt(1)"><span class="r"></span>${ad.label}<span class="pr">+${money(P[ad.pid].p)}</span></button></div>
+        <div class="og"><div class="og-h"><h3>Special instructions</h3></div><textarea class="note" placeholder="Add a note for the restaurant"></textarea></div>
+        <div class="sec"><div class="sec-h"><h2>More from ${b.name}</h2></div><div class="row">${b.variants.map((_,j)=>tile(`${k}-${j}`)).join("")}</div></div>
+      </div>
+    </div>
+    <div class="pd-bar"><div class="qstep"><button onclick="rq(-1)" aria-label="Less">${I.minus}</button><b id="rq">1</b><button onclick="rq(1)" aria-label="More">${I.plus}</button></div><button class="btn-g rbtn" id="rbtn" onclick="radd()"></button></div>
+  </div>`;
+}
+function syncRP(j){
+  const k = RO.k, v = BRANDS[k].variants[j];
+  RO.i = j;
+  const set=(f,h)=>document.querySelectorAll(`[data-pp="${f}"]`).forEach(el=>{ el.innerHTML=h; el.classList.remove("fade-swap"); void el.offsetWidth; el.classList.add("fade-swap"); });
+  set("name", esc(v.n)); set("price-t", money(v.p)); set("desc", esc(DESC[`${k}-${j}`]));
+  rtotal();
+  keepHash(`#/product/${k}/${j}`);
+}
+function rq(d){ RO.q = Math.max(1, Math.min(20, RO.q + d)); document.getElementById("rq").textContent = RO.q; rtotal(); }
+function ropt(n){ RO.opt = n; document.querySelectorAll("[data-ro]").forEach(el=>el.classList.toggle("on", +el.dataset.ro===n)); document.querySelector(".og .req:not(.ok)")?.classList.add("ok"); rtotal(); }
+function rtotal(){
+  const btn = document.getElementById("rbtn"); if(!btn) return;
+  const v = BRANDS[RO.k].variants[RO.i], extra = RO.opt ? P[ADDON[RO.k].pid].p : 0;
+  btn.classList.remove("done");
+  btn.innerHTML = `<span>Add ${RO.q} to cart</span><span>${money((v.p+extra)*RO.q)}</span>`;
+}
+function radd(){
+  const pid = `${RO.k}-${RO.i}`;
+  addToCart(pid, RO.q, true);
+  if(RO.opt) addToCart(ADDON[RO.k].pid, RO.q, true);
+  toast(`Added ${RO.q} × ${BRANDS[RO.k].variants[RO.i].n}`, pid);
+  const btn = document.getElementById("rbtn"); btn.classList.add("done");
+  btn.innerHTML = `<span style="display:flex;align-items:center;gap:8px">${I.check}Added to cart</span><span>View</span>`;
+  btn.onclick = ()=>{ openCart(); btn.onclick = radd; rtotal(); };
 }
 
 function pageScreen(k){
@@ -1089,13 +1212,13 @@ function pageScreen(k){
     <div class="pad-top"></div>
     <div class="pp-hdr"><button class="iconbtn" onclick="back()" aria-label="Back">${I.back}</button><span class="ttl" style="display:flex;align-items:center;gap:8px">${bdg(k,"sm")}${b.name}</span>${cartChip()}</div>
     <div class="scr" id="scr">
-      <div class="hero"><div class="flickbox">${flick("pg", k, {cta:"add"})}</div></div>
+      <div class="hero"><div class="flickbox pulse-in" data-anchor="pg">${flick("pg", k)}</div></div>
       ${strip}
       <div class="sec"><div class="sec-h"><h2>Our best sellers</h2><span class="spon">${b.variants.length} items</span></div>
-        <div class="row">${b.variants.map((v,i)=>`<div class="btile ${i?"":"on"}" data-sync="pg" data-i="${i}" onclick="setVariant('pg',${i})"><div class="im"><img src="${v.img}" alt="">${addCtl(`${k}-${i}`)}</div>${priceHTML(v.p)}<div class="pname">${esc(v.n)}</div><div class="psize">${esc(v.s)}</div></div>`).join("")}</div>
+        <div class="row">${b.variants.map((v,i)=>`<div class="btile ${i?"":"on"}" data-sync="pg" data-i="${i}" onclick="pickOrOpen('pg',${i})"><div class="im"><img src="${v.img}" alt="">${addCtl(`${k}-${i}`)}</div>${priceHTML(v.p)}<div class="pname">${esc(v.n)}</div><div class="psize">${esc(v.s)}</div></div>`).join("")}</div>
       </div>
       ${more}
-      <div class="foot-note">Brand page. Every ad's arrow lands here, and the best sellers follow the option picked in the Flick.</div>
+
       <div style="height:40px"></div>
     </div>
   </div>`;
@@ -1109,17 +1232,20 @@ function parse(){
   const parts = (location.hash || "#/home").replace(/^#\/?/,"").split("/");
   return {name:parts[0]||"home", a:decodeURIComponent(parts[1]||""), b:parts[2]};
 }
+let pendingAnchor = null;
 function render(anim=true){
   const r = parse(), h = location.hash || "#/home";
+  const oldScr = document.querySelector("#view #scr"); if(oldScr && lastHash) SCROLL[lastHash] = oldScr.scrollTop;
   let dir = "enter";
   if(NAV.length > 1 && NAV[NAV.length-2] === h){ NAV.pop(); dir = "enter-back"; }
   else if(NAV[NAV.length-1] !== h) NAV.push(h);
-  SLOTS = {}; closeCart();
+  SLOTS = {}; closeCart(); CURH = h;
   let html;
   if(r.name === "search") html = searchScreen(r.a);
   else if(r.name === "recipe") html = recipeScreen(+r.a||0);
   else if(r.name === "product") html = productScreen(r.a, +r.b||0);
   else if(r.name === "page") html = pageScreen(r.a);
+  else if(r.name === "item") html = itemScreen(r.a);
   else html = homeScreen();
   const view = document.getElementById("view");
   view.innerHTML = html;
@@ -1127,69 +1253,77 @@ function render(anim=true){
   if(anim && lastHash) scr.classList.add(dir);
   lastHash = h;
   if(r.name === "recipe") fillRecipe(Math.max(0,Math.min(2,+r.a||0)));
+  if(r.name === "product" && r.a !== "gm" && BRANDS[r.a]) rtotal();
+  Object.values(SLOTS).forEach(sl=>{ if(sl.v) applyVariant(sl.id, sl.v); });
   document.getElementById("sbar").classList.toggle("light", r.name === "home");
   const pill = document.getElementById("cartpill");
   pill.classList.toggle("low", r.name !== "home");
   pill.classList.toggle("hidden", r.name !== "home");
   refreshAdds();
   observeFlicks(view.querySelector("#scr"));
-  if(r.name === "home" && r.a){ const sec = view.querySelector("#sec-"+r.a); if(sec){ const sc = view.querySelector("#scr"); sc.scrollTop = sec.offsetTop - sc.offsetTop - 6; } }
-  if(r.name === "search" && r.b){ const an = view.querySelector("#anc-"+r.b); if(an){ const sc = view.querySelector("#scr"); setTimeout(()=>{ sc.scrollTop = an.offsetTop - sc.offsetTop - 4; }, 30); } }
+  const sc = view.querySelector("#scr");
+  if(dir === "enter-back" && SCROLL[h] && sc) sc.scrollTop = SCROLL[h];
+  const anc = pendingAnchor || (r.name==="search" ? r.b : null); pendingAnchor = null;
+  if(anc) setTimeout(()=>scrollToAnchor(anc), 60);
   if(r.name === "search" && !r.a) setTimeout(()=>view.querySelector("input")?.focus({preventScroll:true}), 250);
-  markGuide(r);
+  markPicker();
 }
 window.addEventListener("hashchange", ()=>render(true));
 
-/* ================= guide ================= */
-const FMTS = [
-  { key:"sp", title:"Sponsored products", brands:["gm"],
-    text:"The product tile plays a Flick. Shoppers switch flavors inside the ad, and Add puts the flavor they picked in the cart.",
-    links:[["Home: Breakfast picks","#/home/sp"],["Search: cereal","#/search/cereal"],["Product page","#/product/gm/0"]] },
-  { key:"sv", title:"Shoppable video", brands:["bk","lc"],
-    text:"The video and the products under it move as one. Pick a burger in the video and its tile lights up. Tap a tile and the video switches.",
-    links:[["Search: burger","#/search/burger"],["Search: pizza","#/search/pizza"]] },
-  { key:"sd", title:"Shoppable display", brands:["gm"],
-    text:"The banner above the products becomes a Flick, so the hero image always shows the product the shopper is looking at.",
-    links:[["Search: cereal, mid-results","#/search/cereal/sd"]] },
-  { key:"rc", title:"Recipe ads", brands:["gm"],
-    text:"One recipe ad holds three recipes. Switching the cereal changes the dish, the ingredients and what goes in the cart.",
-    links:[["Search: milk","#/search/milk"],["Home: Recipes for you","#/home/rc"],["Recipe page","#/recipe/0"]] },
-  { key:"pg", title:"Brand pages", brands:["gm","bk","lc"],
-    text:"Where every ad's arrow lands. The Flick leads the page and the best sellers follow the shopper's pick.",
-    links:[["General Mills","#/page/gm"],["Burger King","#/page/bk"],["Little Caesars","#/page/lc"]] }
+/* ================= ad format picker ================= */
+const GUIDE = [
+  ["Sponsored products", [["Home: Breakfast picks","#/home","sp","gm"],["Search results: cereal","#/search/cereal","sp","gm"]]],
+  ["Shoppable video", [["Search: burger","#/search/burger","sv","bk"],["Search: pizza","#/search/pizza","sv","lc"]]],
+  ["Shoppable display", [["Search: cereal","#/search/cereal","sd","gm"]]],
+  ["Recipe ads", [["Search: milk","#/search/milk","rc","gm"],["Home: Recipes for you","#/home","rc","gm"]]],
+  ["Brand pages", [["General Mills","#/page/gm","pg","gm"],["Burger King","#/page/bk","pg","bk"],["Little Caesars","#/page/lc","pg","lc"]]]
 ];
-function renderGuide(){
-  document.getElementById("fmts").innerHTML = FMTS.map((f,n)=>`
-    <div class="fmt" data-fmt="${f.key}">
-      <div class="fmt-top"><span class="fmt-n">${n+1}</span><h3>${f.title}</h3><span class="brands">${f.brands.map(k=>bdg(k,"sm")).join("")}</span></div>
-      <p>${f.text}</p>
-      <div class="fmt-links">${f.links.map(([l,h])=>`<button data-h="${h}" onclick="go('${h}');closeGuide()">${l}</button>`).join("")}</div>
-    </div>`).join("");
+let lastAnchor = "";
+function buildPicker(){
+  let n = 0; const h = location.hash || "#/home";
+  document.getElementById("gpanel").innerHTML = `<div class="grab"></div>` + GUIDE.map(([sec, items])=>`<h6>${sec}</h6>` + items.map(([t,route,anchor,k])=>{ n++;
+    const cur = route === h && anchor === lastAnchor;
+    return `<button class="gitem ${cur?"cur":""}" onclick="pick('${route}','${anchor}')"><span class="n">${n}</span>${t}${bdg(k,"xs")}</button>`; }).join("")).join("");
+  document.getElementById("gcount").textContent = n;
 }
-function markGuide(r){
-  const h = location.hash || "#/home";
-  const key = r.name==="home" ? (r.a||"") : r.name==="product" ? "sp" : r.name==="recipe" ? "rc" : r.name==="page" ? "pg" : r.name==="search" ? (r.b==="sd" ? "sd" : ({cereal:"sp",milk:"rc",burger:"sv",pizza:"sv"}[QMAP[(r.a||"").toLowerCase()]] || "")) : "";
-  document.querySelectorAll(".fmt").forEach(el=>el.classList.toggle("on", el.dataset.fmt===key));
-  document.querySelectorAll(".fmt-links button").forEach(b=>{
-    const bh = b.dataset.h;
-    b.classList.toggle("cur", bh===h || (bh.startsWith("#/product") && h.startsWith("#/product")) || (bh.startsWith("#/recipe") && h.startsWith("#/recipe")));
-  });
+let pickedHash = "";
+function markPicker(){ if((location.hash||"#/home") !== pickedHash) lastAnchor = ""; buildPicker(); }
+function togglePicker(force){
+  const p = document.getElementById("gpanel"); const on = force === undefined ? !p.classList.contains("on") : force;
+  if(on) buildPicker();
+  p.classList.toggle("on", on); document.getElementById("gscrim").classList.toggle("on", on);
+  document.getElementById("gpill").setAttribute("aria-expanded", on);
 }
-function openGuide(){ document.getElementById("guide").classList.add("open"); }
-function closeGuide(){ document.getElementById("guide").classList.remove("open"); }
+function pick(route, anchor){
+  togglePicker(false); lastAnchor = anchor; pickedHash = route;
+  const have = location.hash || "#/home";
+  if(have === route) { scrollToAnchor(anchor); buildPicker(); }
+  else { pendingAnchor = anchor; location.hash = route; }
+}
+function scrollToAnchor(a){
+  const sc = document.querySelector("#view #scr"), el = sc && sc.querySelector(`[data-anchor="${a}"]`);
+  if(!el) return;
+  lastAnchor = a;
+  const ratio = sc.getBoundingClientRect().height / (sc.clientHeight || 1);
+  const top = (el.getBoundingClientRect().top - sc.getBoundingClientRect().top) / ratio + sc.scrollTop - 12;
+  sc.scrollTo({top: Math.max(0, top), behavior:"smooth"});
+  el.closest(".row")?.scrollTo({left:0, behavior:"smooth"});
+  setTimeout(()=>{ el.classList.remove("pulse"); void el.offsetWidth; el.classList.add("pulse"); if(el.classList.contains("pulse-in")) el.classList.add("in"); }, 250);
+}
+document.addEventListener("keydown", e=>{ if(e.key === "Escape"){ togglePicker(false); closeCart(); } });
 
 /* ================= phone scaling ================= */
 function fit(){
   const slot = document.getElementById("phoneSlot"), phone = document.getElementById("phone");
   if(innerWidth <= 860){ slot.style.width = slot.style.height = ""; phone.style.transform = ""; return; }
-  const availW = innerWidth - Math.min(420, Math.max(330, innerWidth*0.36)) - 48;
+  const availW = innerWidth - 48;
   const s = Math.min(1, (innerHeight - 40) / 868, availW / 414);
   phone.style.transform = `scale(${s})`;
   slot.style.width = (414*s) + "px"; slot.style.height = (868*s) + "px";
 }
 addEventListener("resize", fit);
 
-renderGuide(); renderSignals(); fit(); render(false);
+buildPicker(); fit(); render(false);
 </script>
 </body>
 </html>
