@@ -392,6 +392,9 @@ input{font:inherit;color:inherit}
 .ing .t b{font-weight:600}
 .svp .addc.na{display:none}
 
+.gspan{grid-column:1/-1}
+.gspan .spcard{margin:4px 0}
+
 /* bottom nav */
 .bnav{flex:none;display:flex;justify-content:space-around;align-items:flex-start;height:82px;padding-top:9px;border-top:1px solid var(--line);background:#fff}
 .bnav button{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:600;color:var(--ink-2);width:76px}
@@ -883,9 +886,9 @@ function sponsoredTile(id, k, anchor){
   </div>`;
 }
 // 1b. Sponsored product: search results, first position
-function sponsoredCard(id, k){
+function sponsoredCard(id, k, anchor="sp"){
   const b = BRANDS[k], v = b.variants[0];
-  return `<section class="spcard" data-anchor="sp" aria-label="Sponsored product">
+  return `<section class="spcard" data-anchor="${anchor}" aria-label="Sponsored product">
     <div class="flickbox">${flick(id, k, {on:i=>syncProduct(id,k,i)})}</div>
     <div class="spinfo"><div class="meta" onclick="go('#/product/${k}/'+SLOTS['${id}'].v)" style="cursor:pointer">
       <div data-b="${id}" data-f="price">${priceHTML(v.p, v.was)}</div>
@@ -958,6 +961,7 @@ function tile(pid){
   return `<div class="tile" onclick="openP('${pid}')" style="cursor:pointer"><div class="im">${pimg(pid)}${addCtl(pid)}</div>${priceHTML(x.p, x.was)}<div class="pname">${esc(x.n)}</div><div class="psize">${esc(x.s)}</div>${x.was?`<span class="badge">Save ${money(x.was-x.p)}</span>`:""}</div>`;
 }
 const row = ids => `<div class="row">${ids.map(tile).join("")}</div>`;
+const gridWithAd = (ids, at, ad) => `<div class="grid">${ids.slice(0,at).map(tile).join("")}<div class="gspan">${ad}</div>${ids.slice(at).map(tile).join("")}</div>`;
 const grid = ids => `<div class="grid">${ids.map(tile).join("")}</div>`;
 
 /* ================= screens ================= */
@@ -980,7 +984,8 @@ function homeScreen(){
       <div class="sec"><div class="sec-h"><h2>Snack time</h2><button onclick="go('#/search/chips')">Show all</button></div>
         <div class="row">${sponsoredTile("home-sp2","dor","sp2")}${["queso","salsa","scoops","lays"].map(tile).join("")}</div></div>
       <div class="sec"><div class="sec-h"><h2>Recipes for you</h2></div>${recipeAd("home-rc")}</div>
-      <div class="sec"><div class="sec-h"><h2>Frozen treats</h2><button onclick="go('#/search/ice%20cream')">Show all</button></div>${row(["bj-0","bj-2","bj-cfb","bj-straw","hd-cherry"])}</div>
+      <div class="sec"><div class="sec-h"><h2>Frozen treats</h2><button onclick="go('#/search/ice%20cream')">Show all</button></div>
+        <div class="row">${sponsoredTile("home-sp3","bj","sp3")}${["bj-cfb","bj-straw","hd-cherry","tillamook"].map(tile).join("")}</div></div>
       <div class="sec"><div class="sec-h"><h2>Buy it again</h2></div>${row(["milk-2","eggs","banana","brioche","butter"])}</div>
       ${FOOT}<div style="height:70px"></div>
     </div>
@@ -1017,7 +1022,7 @@ function searchScreen(q){
     body = chipsRow(["Tortilla chips","Potato chips","Dips & salsa","Party size"]) + shoppableUnit("s-sd","dor","shoppable display") + resultsHead(q) + grid(GROUPS.chips) +
       `<div class="sec"><div class="sec-h"><h2>Dips &amp; salsa</h2></div>${row(GROUPS.dips)}</div>`;
   } else if(key==="icecream"){
-    body = chipsRow(["Pints","Tubs","Bars","Non-dairy","Toppings"]) + shoppableUnit("s-sv","bj","shoppable video") + resultsHead(q) + grid(GROUPS.icecream) +
+    body = chipsRow(["Pints","Tubs","Bars","Non-dairy","Toppings"]) + shoppableUnit("s-sv","bj","shoppable video") + resultsHead(q) + gridWithAd(GROUPS.icecream, 2, sponsoredCard("s-il","bj","il")) +
       `<div class="sec"><div class="sec-h"><h2>Make it a sundae</h2></div>${row(GROUPS.toppings)}</div>`;
   } else if(key==="breakfast"){
     body = chipsRow(["Eggs","Bread","Fruit","Yogurt","Dairy"]) + recipeAd("s-rc") + resultsHead(q) + grid(GROUPS.breakfast);
@@ -1224,7 +1229,7 @@ window.addEventListener("hashchange", ()=>render(true));
 
 /* ================= ad format picker ================= */
 const GUIDE = [
-  ["Sponsored products", [["Home: Breakfast picks","#/home","sp","gm"],["Home: Snack time","#/home","sp2","dor"],["Search: cereal","#/search/cereal","sp","gm"]]],
+  ["Sponsored products", [["Home: Breakfast picks","#/home","sp","gm"],["Home: Snack time","#/home","sp2","dor"],["Home: Frozen treats","#/home","sp3","bj"],["Search: cereal","#/search/cereal","sp","gm"],["Search: ice cream, in-line","#/search/ice%20cream","il","bj"]]],
   ["Shoppable video", [["Search: ice cream","#/search/ice%20cream","sv","bj"]]],
   ["Shoppable display", [["Search: chips","#/search/chips","sd","dor"]]],
   ["Recipe ads", [["Search: breakfast","#/search/breakfast","rc","gm"],["Home: Recipes for you","#/home","rc","gm"]]],
@@ -1257,7 +1262,9 @@ function scrollToAnchor(a){
   if(!el) return;
   lastAnchor = a;
   const ratio = sc.getBoundingClientRect().height / (sc.clientHeight || 1);
-  const top = (el.getBoundingClientRect().top - sc.getBoundingClientRect().top) / ratio + sc.scrollTop - 12;
+  // Ads inside a home row scroll so the row's heading stays visible.
+  const tgt = el.closest(".htile") ? el.closest(".sec") : el;
+  const top = (tgt.getBoundingClientRect().top - sc.getBoundingClientRect().top) / ratio + sc.scrollTop - 12;
   sc.scrollTo({top: Math.max(0, top), behavior:"smooth"});
   el.closest(".row")?.scrollTo({left:0, behavior:"smooth"});
   setTimeout(()=>{ el.classList.remove("pulse"); void el.offsetWidth; el.classList.add("pulse"); if(el.classList.contains("pulse-in")) el.classList.add("in"); }, 250);
