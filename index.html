@@ -712,6 +712,19 @@ function observeFlicks(root){
   if(io) io.disconnect();
   io = new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting) mount(en.target); }), {root, rootMargin:"400px 0px"});
   document.querySelectorAll("#view .flick[data-slot]").forEach(h=>io.observe(h));
+  // Fallback: some browsers pause the observer in background or embedded views,
+  // so also mount anything near the visible area directly, now and on scroll.
+  if(root){ mountNear(root); root.addEventListener("scroll", ()=>{ clearTimeout(nearT); nearT=setTimeout(()=>mountNear(root),120); }, {passive:true}); }
+  setTimeout(()=>root && mountNear(root), 300);
+}
+let nearT;
+function mountNear(root){
+  if(!root.isConnected) return;
+  const rr = root.getBoundingClientRect(), pad = 400 * (rr.height / (root.clientHeight || rr.height || 1));
+  root.querySelectorAll(".flick[data-slot]").forEach(h=>{
+    const r = h.getBoundingClientRect();
+    if(r.bottom > rr.top - pad && r.top < rr.bottom + pad) mount(h);
+  });
 }
 function mount(host){
   const s = SLOTS[host.dataset.slot]; if(!s || s.mounted) return;
