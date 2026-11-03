@@ -152,7 +152,7 @@ input{font:inherit;color:inherit}
 .shdr{display:flex;align-items:center;gap:8px;padding:4px 12px 10px;flex:none;background:#fff}
 .iconbtn{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none}
 .iconbtn:active{background:var(--chip)}
-.sfield{flex:1;display:flex;align-items:center;gap:8px;height:42px;border-radius:999px;background:var(--chip);padding:0 8px 0 14px;border:1.5px solid transparent}
+.sfield{flex:1;min-width:0;display:flex;align-items:center;gap:8px;height:42px;border-radius:999px;background:var(--chip);padding:0 8px 0 14px;border:1.5px solid transparent}
 .sfield:focus-within{border-color:var(--kale);background:#fff}
 .sfield input{flex:1;border:0;background:none;outline:none;font-size:15px;min-width:0}
 .sfield .clr{width:24px;height:24px;border-radius:50%;background:#dcdee1;display:grid;place-items:center}
@@ -210,25 +210,49 @@ input{font:inherit;color:inherit}
 .htile .info{display:flex;align-items:flex-end;gap:8px}
 .htile .info .meta{flex:1;min-width:0}
 
-/* shoppable video */
-.svu{margin:14px 0 6px;padding:14px 0 16px;background:linear-gradient(180deg,#fff 0%,#fbf7f1 100%);border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2)}
-.svhead{display:flex;align-items:center;gap:10px;padding:0 16px;margin-bottom:12px}
-.svhead .t{flex:1;min-width:0}
-.svhead .t b{display:block;font-size:15.5px;letter-spacing:-.2px}
-.svhead .t span{font-size:12px;color:var(--ink-2)}
-.svu .flickbox{margin:0 16px}
-.svprods{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:12px 16px 0}
-.svp{position:relative;border-radius:14px;background:#fff;border:1.5px solid var(--line);padding:6px 6px 8px;text-align:left;transition:border-color .2s,box-shadow .2s,transform .2s}
-.svp.on{border-color:var(--green);box-shadow:0 0 0 3px rgba(16,137,16,.12);transform:translateY(-2px)}
-.svp .im{aspect-ratio:1/1;border-radius:10px;background:var(--img);display:grid;place-items:center;overflow:hidden}
-.svp .im img{width:92%;height:92%;object-fit:contain}
-.svp .pname{font-size:12px;font-weight:600;min-height:31px}
-.svp .price{font-size:14.5px;margin-top:4px}
-.svp .im{position:relative;overflow:visible}
-.svp .addc{position:absolute;right:3px;bottom:3px}
-.svp .now{position:absolute;left:8px;top:8px;font-size:9.5px;font-weight:800;letter-spacing:.3px;background:var(--green);color:#fff;border-radius:5px;padding:2px 5px;opacity:0;transform:scale(.8);transition:all .2s}
+/* shoppable video + shoppable display (lifted card, as in Instacart's own units) */
+.shop{margin:18px 12px 10px;border-radius:18px;background:#fff;overflow:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.04),0 12px 30px -12px rgba(0,0,0,.28)}
+.shop-h{display:flex;align-items:center;gap:11px;padding:12px 12px 12px 14px;width:100%;text-align:left}
+.shop-h .t{flex:1;min-width:0}
+.shop-h .t b{display:block;font-size:16px;font-weight:700;letter-spacing:-.25px;line-height:1.2}
+.shop-h .t span{font-size:12px;color:var(--ink-2)}
+.shop-h .go{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:var(--ink)}
+.shop .flickbox{border-radius:0}
+.svprods{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px 12px 14px}
+.svp{position:relative;text-align:left;cursor:pointer}
+.svp .im{position:relative;aspect-ratio:1/1;border-radius:12px;background:var(--img);display:grid;place-items:center;transition:box-shadow .2s}
+.svp .im img{width:88%;height:88%;object-fit:contain;transition:transform .25s}
+.svp.on .im{box-shadow:0 0 0 2px var(--green)}
+.svp.on .im img{transform:scale(1.04)}
+.svp .addc{position:absolute;right:-5px;top:-5px}
+.svp .price{font-size:13.5px;margin-top:7px}
+.svp .price sup{font-size:9px}
+.svp .pname{font-size:12.5px;line-height:1.25}
+.svp .psize{font-size:11.5px}
+.svp .now{position:absolute;left:6px;bottom:6px;font-size:9.5px;font-weight:800;letter-spacing:.2px;background:var(--green);color:#fff;border-radius:5px;padding:2px 6px;opacity:0;transform:translateY(3px);transition:all .2s}
 .svp.on .now{opacity:1;transform:none}
-.svmore{display:flex;justify-content:center;margin-top:14px}
+.shop-kind{display:inline-flex;align-items:center;gap:4px}
+
+/* brand page */
+.pg-strip{display:flex;align-items:center;gap:10px;margin:14px 16px 4px;padding:10px 12px;border:1px solid var(--line);border-radius:14px}
+.pg-strip .t{flex:1;min-width:0}
+.pg-strip .t b{display:block;font-size:13.5px}
+.pg-strip .t span{font-size:12px;color:var(--green);display:flex;align-items:center;gap:4px;font-weight:600}
+.btile{width:150px;position:relative;cursor:pointer}
+.btile .im{position:relative;height:180px;border-radius:14px;background:var(--img);display:grid;place-items:center;transition:box-shadow .2s}
+.btile .im img{width:90%;height:80%;object-fit:contain}
+.btile.on .im{box-shadow:0 0 0 2px var(--green)}
+.btile .addc{position:absolute;right:6px;top:6px}
+.rtile{width:200px;text-align:left}
+.rtile .im{height:120px;border-radius:14px;display:grid;place-items:center;overflow:hidden}
+.rtile .im img{height:86%;object-fit:contain;filter:drop-shadow(0 6px 10px rgba(0,0,0,.18))}
+.rtile b{display:block;font-size:13.5px;margin-top:8px;line-height:1.3}
+.rtile span{font-size:12px;color:var(--ink-2)}
+
+/* cart chip in headers */
+.cartchip{display:flex;align-items:center;gap:6px;height:34px;padding:0 12px 0 10px;border-radius:999px;background:var(--green);color:#fff;font-weight:800;font-size:14px;flex:none}
+.cartchip.bump{animation:chip .4s}
+@keyframes chip{40%{transform:scale(1.12)}}
 
 /* brand badges */
 .bdg{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:12px;letter-spacing:-.4px;flex:none;box-shadow:0 0 0 1px rgba(0,0,0,.06)}
@@ -265,7 +289,7 @@ input{font:inherit;color:inherit}
 
 /* recipe page */
 .rp-hdr,.pp-hdr{display:flex;align-items:center;justify-content:space-between;padding:0 8px 6px;flex:none;background:#fff}
-.rp-hdr .r{display:flex;gap:2px}
+.rp-hdr .r{display:flex;gap:2px;align-items:center}
 .rp-hdr .ttl,.pp-hdr .ttl{font-weight:700;font-size:15px}
 .hero{margin:0}
 .hero .flickbox{border-radius:0}
@@ -397,7 +421,7 @@ input{font:inherit;color:inherit}
     </div>
     <div class="gintro">
       <h1>Flicks inside every Instacart ad.</h1>
-      <p>Shoppers switch between products inside the ad itself, then add the one they picked. Here are the three Instacart ad formats, each running a live Flick.</p>
+      <p>Shoppers switch between products inside the ad itself, then add the one they picked. Here are Instacart's ad formats, each running a live Flick.</p>
     </div>
     <div>
       <div class="gsec-h">Ad formats</div>
@@ -575,6 +599,8 @@ const RECIPES = [
 
 /* ================= helpers ================= */
 const I = {
+  cart:`<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2.2l2.3 11h10.8L20.5 7H6.4"/><circle cx="9.5" cy="19.5" r="1.3" fill="currentColor"/><circle cx="17" cy="19.5" r="1.3" fill="currentColor"/></svg>`,
+  arrow:`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`,
   back:`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>`,
   search:`<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>`,
   filter:`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>`,
@@ -634,6 +660,7 @@ function refreshAdds(){
   const n = Object.values(CART).reduce((a,b)=>a+b,0);
   const pill = document.getElementById("cartpill");
   document.getElementById("cartn").textContent = n;
+  document.querySelectorAll("[data-cartn]").forEach(el=>el.textContent = n);
   pill.classList.toggle("show", n>0);
   if(document.getElementById("sheet").classList.contains("on")) renderCart();
 }
@@ -643,7 +670,7 @@ function addToCart(pid, n=1, silent=false){
   if(n>0){
     const x=P[pid]; if(x.brand) { SIG[x.brand].adds[x.vi]++; renderSignals(); }
     if(!silent) toast(`Added ${x.n}`, pid);
-    const pill=document.getElementById("cartpill"); pill.classList.remove("bump"); void pill.offsetWidth; pill.classList.add("bump");
+    [document.getElementById("cartpill"),...document.querySelectorAll(".cartchip")].forEach(el=>{ el.classList.remove("bump"); void el.offsetWidth; el.classList.add("bump"); });
   }
   refreshAdds();
 }
@@ -829,20 +856,20 @@ function syncProduct(id, k, i){
   if(ctl){ setPid(ctl, `${k}-${i}`); refreshAdds(); }
 }
 
-// 2. Shoppable video: Flick plus synced product cards
-function shoppableVideo(id, k){
+// 2. Shoppable video and shoppable display: Flick plus synced product row, arrow opens the brand page
+const HEAD = { bk:"Your burger, your call", lc:"Pick tonight's pizza", gm:"Breakfast, three ways" };
+function shoppableUnit(id, k, kind){
   const b = BRANDS[k];
-  return `<section class="svu" aria-label="Sponsored shoppable video">
-    <div class="svhead">${bdg(k)}<div class="t"><b>${b.name}</b><span>Delivery in ${b.eta} · ${b.fee}</span></div><span class="spon">Sponsored</span></div>
+  return `<section class="shop" aria-label="Sponsored ${kind}">
+    <button class="shop-h" onclick="go('#/page/${k}')">${bdg(k)}<span class="t"><b>${HEAD[k]}</b><span>Sponsored · ${b.name}</span></span><span class="go">${I.arrow}</span></button>
     <div class="flickbox">${flick(id, k, {cta:"add"})}</div>
     <div class="svprods">${b.variants.map((v,i)=>`
       <div class="svp ${i?"":"on"}" data-sync="${id}" data-i="${i}" role="button" tabindex="0" onclick="setVariant('${id}',${i})">
-        <span class="now">NOW PLAYING</span>
-        <div class="im"><img src="${v.img}" alt="" decoding="async">${addCtl(`${k}-${i}`,"sm")}</div>
-        <div class="pname">${esc(v.n)}</div>
+        <div class="im"><img src="${v.img}" alt="" decoding="async">${addCtl(`${k}-${i}`,"sm")}<span class="now">Showing</span></div>
         ${priceHTML(v.p)}
+        <div class="pname">${esc(v.short)}</div>
+        <div class="psize">${esc(b.eta ? b.name : v.s)}</div>
       </div>`).join("")}</div>
-    <div class="svmore"><button class="btn-o" onclick="toast('Full ${esc(b.name)} menu is outside this demo')">See full ${esc(b.name)} menu</button></div>
   </section>`;
 }
 
@@ -876,7 +903,7 @@ function tile(pid, opt={}){
 }
 function restaurant(k, tint){
   const b = BRANDS[k];
-  return `<button class="rest" onclick="go('#/search/${k==="bk"?"burger":"pizza"}')" style="text-align:left">
+  return `<button class="rest" onclick="go('#/page/${k}')" style="text-align:left">
     <div class="cover" style="background:${tint}"><img src="${b.variants[0].img}" alt="" decoding="async">${bdg(k)}</div>
     <b>${b.name}</b><span>${b.eta} · ${b.fee}</span></button>`;
 }
@@ -933,7 +960,7 @@ const QMAP = { cereal:"cereal", cereals:"cereal", breakfast:"cereal", "general m
   burger:"burger", burgers:"burger", whopper:"burger", "burger king":"burger", bk:"burger",
   pizza:"pizza", pizzas:"pizza", "little caesars":"pizza", pepperoni:"pizza" };
 const SUGG = [
-  ["cereal","Sponsored products","General Mills","gm-0"],
+  ["cereal","Products + display","General Mills","gm-0"],
   ["milk","Recipe ad","General Mills","gm-2"],
   ["burger","Shoppable video","Burger King","bk-0"],
   ["pizza","Shoppable video","Little Caesars","lc-0"]
@@ -948,16 +975,18 @@ function searchScreen(q){
       ${["bananas","greek yogurt","sparkling water"].map(s=>`<button class="sugg-i" onclick="go('#/search/${s}')"><span class="ic">${I.again}</span><span class="t"><b style="font-weight:500">${s}</b></span></button>`).join("")}</div>`;
   } else if(key==="cereal"){
     body = chipsRow(["Cereal","Granola","Oatmeal","Organic","Gluten free"]) + sponsoredCard("s-sp","gm") +
-      resultsHead(q) + `<div class="grid">${["oat-rings","granola","corn-flakes","choc-puffs","bran","oats"].map(id=>tile(id)).join("")}</div>`;
+      resultsHead(q) + `<div class="grid">${["oat-rings","granola","corn-flakes","choc-puffs"].map(id=>tile(id)).join("")}</div>` +
+      `<div id="anc-sd">${shoppableUnit("s-sd","gm","shoppable display")}</div>` +
+      `<div class="grid" style="margin-top:14px">${["bran","oats"].map(id=>tile(id)).join("")}</div>`;
   } else if(key==="milk"){
     body = chipsRow(["Dairy milk","Plant based","Lactose free","Organic","Flavored"]) + recipeAd("s-rc") +
       resultsHead(q) + `<div class="grid">${["milk-2","milk-whole","milk-oat","milk-almond","milk-lf","milk-choc"].map(id=>tile(id)).join("")}</div>`;
   } else if(key==="burger"){
-    body = chipsRow(["Restaurants","Burger buns","Patties","Cheese","Condiments"]) + shoppableVideo("s-sv-bk","bk") +
+    body = chipsRow(["Restaurants","Burger buns","Patties","Cheese","Condiments"]) + shoppableUnit("s-sv-bk","bk","shoppable video") +
       `<div class="sec"><div class="sec-h"><h2>Restaurants</h2></div><div class="row">${restaurant("bk","linear-gradient(135deg,#f5ebdc,#f0c9a0)")}${fakeRest("Smash Shack","20-30 min · $1.99 delivery","linear-gradient(135deg,#fde7e2,#f4a99a)",["buns","#d9902f","#b0281f"])}</div></div>` +
       resultsHead(q, "From Greenleaf Market") + `<div class="grid">${["buns","patties","cheese-sl","pickles","ketchup","rings"].map(id=>tile(id)).join("")}</div>`;
   } else if(key==="pizza"){
-    body = chipsRow(["Restaurants","Frozen pizza","Dough","Sauce","Cheese"]) + shoppableVideo("s-sv-lc","lc") +
+    body = chipsRow(["Restaurants","Frozen pizza","Dough","Sauce","Cheese"]) + shoppableUnit("s-sv-lc","lc","shoppable video") +
       `<div class="sec"><div class="sec-h"><h2>Restaurants</h2></div><div class="row">${restaurant("lc","linear-gradient(135deg,#ffe2c7,#f7a35c)")}${fakeRest("Forno Slice Co.","25-40 min · $2.49 delivery","linear-gradient(135deg,#fff1d6,#f2c26b)",["pizzabox","#1c5c3a","#c8261c","SLICE"])}</div></div>` +
       resultsHead(q, "From Greenleaf Market") + `<div class="grid">${["fz-marg","fz-pep","dough","sauce","mozz","pepperoni"].map(id=>tile(id)).join("")}</div>`;
   } else {
@@ -968,11 +997,12 @@ function searchScreen(q){
     <div class="shdr">
       <button class="iconbtn" onclick="back()" aria-label="Back">${I.back}</button>
       <form class="sfield" onsubmit="event.preventDefault();go('#/search/'+encodeURIComponent(this.q.value.trim()))">${I.search}<input name="q" value="${esc(q)}" placeholder="Search products, stores, and restaurants" autocomplete="off" enterkeyhint="search">${q?`<button type="button" class="clr" onclick="go('#/search/')" aria-label="Clear">${I.x}</button>`:""}</form>
-      <button class="iconbtn" onclick="toast('Filters are outside this demo')" aria-label="Filters">${I.filter}</button>
+      <button class="iconbtn" onclick="toast('Filters are outside this demo')" aria-label="Filters" style="width:32px">${I.filter}</button>${cartChip()}
     </div>
     <div class="scr" id="scr">${body}<div class="foot-note">Concept prototype by Flam. Not affiliated with or endorsed by Instacart, Burger King, Little Caesars or General Mills.</div><div style="height:60px"></div></div>
   </div>`;
 }
+const cartChip = () => `<button class="cartchip" onclick="openCart()" aria-label="Open cart">${I.cart}<span data-cartn>0</span></button>`;
 function chipsRow(list){ return `<div class="chips">${list.map((c,i)=>`<button class="chip ${i?"":"on"}" onclick="this.parentNode.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));this.classList.add('on')">${c}</button>`).join("")}</div>`; }
 function resultsHead(q, t){ return `<div class="sec-h" style="margin-top:20px"><h2>${t||`Results for "${esc(q)}"`}</h2></div>`; }
 
@@ -980,7 +1010,7 @@ function recipeScreen(i){
   i = Math.max(0, Math.min(2, i|0));
   return `<div class="screen" data-name="recipe">
     <div class="pad-top"></div>
-    <div class="rp-hdr"><button class="iconbtn" onclick="back()" aria-label="Back">${I.back}</button><span class="ttl">Recipe</span><div class="r"><button class="iconbtn" onclick="toast('Saved to your recipes')" aria-label="Save">${I.bookmark}</button><button class="iconbtn" onclick="toast('Sharing is outside this demo')" aria-label="Share">${I.share}</button></div></div>
+    <div class="rp-hdr"><button class="iconbtn" onclick="back()" aria-label="Back">${I.back}</button><span class="ttl">Recipe</span><div class="r"><button class="iconbtn" onclick="toast('Saved to your recipes')" aria-label="Save">${I.bookmark}</button>${cartChip()}</div></div>
     <div class="scr" id="scr">
       <div class="hero"><div class="flickbox">${flick("rp", "gm", {v:i, cta:"add", on:(v,ch)=>{ if(ch) fillRecipe(v); }})}</div></div>
       <div class="rp-body" id="rpbody"></div>
@@ -1022,7 +1052,7 @@ function productScreen(k, i){
   const b = BRANDS[k], v = b.variants[i];
   return `<div class="screen" data-name="product">
     <div class="pad-top"></div>
-    <div class="pp-hdr"><button class="iconbtn" onclick="back()" aria-label="Back">${I.back}</button><span class="ttl">${b.store==="Greenleaf Market"?"Greenleaf Market":b.name}</span><button class="iconbtn" onclick="toast('Sharing is outside this demo')" aria-label="Share">${I.share}</button></div>
+    <div class="pp-hdr"><button class="iconbtn" onclick="back()" aria-label="Back">${I.back}</button><span class="ttl">${b.store==="Greenleaf Market"?"Greenleaf Market":b.name}</span>${cartChip()}</div>
     <div class="scr" id="scr">
       <div class="hero"><div class="flickbox">${flick("pp", k, {v:i, cta:"add", on:j=>syncPP(k,j)})}</div></div>
       <div class="pp-body">
@@ -1046,6 +1076,31 @@ function syncPP(k, j){
   const ctl = document.querySelector(".sticky .addc"); if(ctl){ setPid(ctl, `${k}-${j}`); refreshAdds(); }
 }
 
+function pageScreen(k){
+  if(!BRANDS[k]) k = "gm";
+  const b = BRANDS[k];
+  const strip = k==="gm"
+    ? `<div class="pg-strip"><span class="bdg sm" style="background:#e6f4e6">${I.leaf}</span><span class="t"><b>Greenleaf Market</b><span>${I.bolt}Delivery by 12:40pm</span></span>${I.chev}</div>`
+    : `<div class="pg-strip">${bdg(k,"sm")}<span class="t"><b>${b.name}</b><span>${I.bolt}Delivery in ${b.eta}</span></span>${I.chev}</div>`;
+  const more = k==="gm"
+    ? `<div class="sec"><div class="sec-h"><h2>Recipes from General Mills</h2></div><div class="row">${RECIPES.map((r,i)=>`<button class="rtile" onclick="go('#/recipe/${i}')"><div class="im" style="background:${["#fde8ef","#fff3d9","#f9e6d6"][i]}"><img src="${b.variants[i].img}" alt=""></div><b>${esc(r.title)}</b><span>${r.time} · Serves ${r.serves}</span></button>`).join("")}</div></div>`
+    : `<div class="sec"><div class="sec-h"><h2>Goes great with</h2></div><div class="row">${(k==="bk"?["rings","ketchup","milk-choc"]:["mozz","sauce","milk-choc"]).map(id=>tile(id)).join("")}</div></div>`;
+  return `<div class="screen" data-name="page">
+    <div class="pad-top"></div>
+    <div class="pp-hdr"><button class="iconbtn" onclick="back()" aria-label="Back">${I.back}</button><span class="ttl" style="display:flex;align-items:center;gap:8px">${bdg(k,"sm")}${b.name}</span>${cartChip()}</div>
+    <div class="scr" id="scr">
+      <div class="hero"><div class="flickbox">${flick("pg", k, {cta:"add"})}</div></div>
+      ${strip}
+      <div class="sec"><div class="sec-h"><h2>Our best sellers</h2><span class="spon">${b.variants.length} items</span></div>
+        <div class="row">${b.variants.map((v,i)=>`<div class="btile ${i?"":"on"}" data-sync="pg" data-i="${i}" onclick="setVariant('pg',${i})"><div class="im"><img src="${v.img}" alt="">${addCtl(`${k}-${i}`)}</div>${priceHTML(v.p)}<div class="pname">${esc(v.n)}</div><div class="psize">${esc(v.s)}</div></div>`).join("")}</div>
+      </div>
+      ${more}
+      <div class="foot-note">Brand page. Every ad's arrow lands here, and the best sellers follow the option picked in the Flick.</div>
+      <div style="height:40px"></div>
+    </div>
+  </div>`;
+}
+
 /* ================= router ================= */
 let NAV = [], lastHash = "";
 function go(h){ if(location.hash === h) render(false); else location.hash = h; }
@@ -1064,6 +1119,7 @@ function render(anim=true){
   if(r.name === "search") html = searchScreen(r.a);
   else if(r.name === "recipe") html = recipeScreen(+r.a||0);
   else if(r.name === "product") html = productScreen(r.a, +r.b||0);
+  else if(r.name === "page") html = pageScreen(r.a);
   else html = homeScreen();
   const view = document.getElementById("view");
   view.innerHTML = html;
@@ -1074,10 +1130,11 @@ function render(anim=true){
   document.getElementById("sbar").classList.toggle("light", r.name === "home");
   const pill = document.getElementById("cartpill");
   pill.classList.toggle("low", r.name !== "home");
-  pill.classList.toggle("hidden", r.name === "recipe" || r.name === "product");
+  pill.classList.toggle("hidden", r.name !== "home");
   refreshAdds();
   observeFlicks(view.querySelector("#scr"));
   if(r.name === "home" && r.a){ const sec = view.querySelector("#sec-"+r.a); if(sec){ const sc = view.querySelector("#scr"); sc.scrollTop = sec.offsetTop - sc.offsetTop - 6; } }
+  if(r.name === "search" && r.b){ const an = view.querySelector("#anc-"+r.b); if(an){ const sc = view.querySelector("#scr"); setTimeout(()=>{ sc.scrollTop = an.offsetTop - sc.offsetTop - 4; }, 30); } }
   if(r.name === "search" && !r.a) setTimeout(()=>view.querySelector("input")?.focus({preventScroll:true}), 250);
   markGuide(r);
 }
@@ -1089,11 +1146,17 @@ const FMTS = [
     text:"The product tile plays a Flick. Shoppers switch flavors inside the ad, and Add puts the flavor they picked in the cart.",
     links:[["Home: Breakfast picks","#/home/sp"],["Search: cereal","#/search/cereal"],["Product page","#/product/gm/0"]] },
   { key:"sv", title:"Shoppable video", brands:["bk","lc"],
-    text:"The video and the product cards move as one. Pick a burger in the video and its card lights up. Tap a card and the video switches.",
+    text:"The video and the products under it move as one. Pick a burger in the video and its tile lights up. Tap a tile and the video switches.",
     links:[["Search: burger","#/search/burger"],["Search: pizza","#/search/pizza"]] },
+  { key:"sd", title:"Shoppable display", brands:["gm"],
+    text:"The banner above the products becomes a Flick, so the hero image always shows the product the shopper is looking at.",
+    links:[["Search: cereal, mid-results","#/search/cereal/sd"]] },
   { key:"rc", title:"Recipe ads", brands:["gm"],
     text:"One recipe ad holds three recipes. Switching the cereal changes the dish, the ingredients and what goes in the cart.",
-    links:[["Search: milk","#/search/milk"],["Home: Recipes for you","#/home/rc"],["Recipe page","#/recipe/0"]] }
+    links:[["Search: milk","#/search/milk"],["Home: Recipes for you","#/home/rc"],["Recipe page","#/recipe/0"]] },
+  { key:"pg", title:"Brand pages", brands:["gm","bk","lc"],
+    text:"Where every ad's arrow lands. The Flick leads the page and the best sellers follow the shopper's pick.",
+    links:[["General Mills","#/page/gm"],["Burger King","#/page/bk"],["Little Caesars","#/page/lc"]] }
 ];
 function renderGuide(){
   document.getElementById("fmts").innerHTML = FMTS.map((f,n)=>`
@@ -1105,7 +1168,7 @@ function renderGuide(){
 }
 function markGuide(r){
   const h = location.hash || "#/home";
-  const key = r.name==="home" ? (r.a||"") : r.name==="product" ? "sp" : r.name==="recipe" ? "rc" : r.name==="search" ? ({cereal:"sp",milk:"rc",burger:"sv",pizza:"sv"}[QMAP[(r.a||"").toLowerCase()]] || "") : "";
+  const key = r.name==="home" ? (r.a||"") : r.name==="product" ? "sp" : r.name==="recipe" ? "rc" : r.name==="page" ? "pg" : r.name==="search" ? (r.b==="sd" ? "sd" : ({cereal:"sp",milk:"rc",burger:"sv",pizza:"sv"}[QMAP[(r.a||"").toLowerCase()]] || "")) : "";
   document.querySelectorAll(".fmt").forEach(el=>el.classList.toggle("on", el.dataset.fmt===key));
   document.querySelectorAll(".fmt-links button").forEach(b=>{
     const bh = b.dataset.h;
